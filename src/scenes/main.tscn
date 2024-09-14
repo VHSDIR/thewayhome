@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://0fje57i0c0sj"]
+[gd_scene load_steps=7 format=3 uid="uid://0fje57i0c0sj"]
 
 [ext_resource type="PackedScene" uid="uid://d26te0gv7khjd" path="res://scenes/block.tscn" id="1_w5kyn"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_xrftk"]
@@ -11,6 +11,8 @@ ambient_light_energy = 1.17
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nx46y"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_p31o1"]
+
 [node name="main" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -22,30 +24,34 @@ environment = SubResource("Environment_veiwc")
 [node name="Level" type="Node3D" parent="."]
 
 [node name="Node3D2" parent="Level" instance=ExtResource("1_w5kyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4036, 0.952013, -12.1647)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4036, -4.84818, 35.2749)
 
 [node name="Node3D3" parent="Level" instance=ExtResource("1_w5kyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.04307, 1.14863, 3.74468)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.256447, 1.14863, 26.7197)
 
 [node name="Node3D4" parent="Level" instance=ExtResource("1_w5kyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1176, 1.07546, 22.5948)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.56484, 10.3123, 22.5948)
 
 [node name="Node3D6" parent="Level" instance=ExtResource("1_w5kyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.20302, 0.981137, -7.7258)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.20302, 0.981137, 89.3582)
 
 [node name="Node3D7" parent="Level" instance=ExtResource("1_w5kyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.233394, 0.871016, -3.8629)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96629, 0.871014, 44.1006)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.57453)
 script = ExtResource("2_xrftk")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_nx46y")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.965158, 1.85367)
+mesh = SubResource("SphereMesh_p31o1")
+
 [node name="terrain" parent="." instance=ExtResource("3_x3jfn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.026516, 4.76837e-07, 0.0263777)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83404, 0.912781, 0.259051)
