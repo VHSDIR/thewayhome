@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://0fje57i0c0sj"]
+[gd_scene load_steps=6 format=3 uid="uid://0fje57i0c0sj"]
 
 [ext_resource type="PackedScene" uid="uid://d26te0gv7khjd" path="res://scenes/block.tscn" id="1_w5kyn"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_xrftk"]
@@ -10,8 +10,6 @@ background_color = Color(0.313799, 0.792279, 0.995409, 1)
 ambient_light_energy = 1.17
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nx46y"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_p31o1"]
 
 [node name="main" type="Node3D"]
 
@@ -49,9 +47,24 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_nx46y")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.965158, 1.85367)
-mesh = SubResource("SphereMesh_p31o1")
+[node name="Control" type="Control" parent="CharacterBody3D"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 303.0
+offset_top = 199.0
+offset_right = 609.0
+offset_bottom = 314.0
+
+[node name="Label" type="Label" parent="CharacterBody3D/Control"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 363.0
+offset_right = 429.0
+offset_bottom = 433.0
+theme_override_font_sizes/font_size = 50
+text = "20.2"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="terrain" parent="." instance=ExtResource("3_x3jfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83404, 0.912781, 0.259051)
