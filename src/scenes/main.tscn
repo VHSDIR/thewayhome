@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://0fje57i0c0sj"]
+
+[ext_resource type="PackedScene" uid="uid://d26te0gv7khjd" path="res://scenes/block.tscn" id="1_w5kyn"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="2_xrftk"]
+[ext_resource type="PackedScene" uid="uid://d2754k6brsb7x" path="res://scenes/terrain.tscn" id="3_x3jfn"]
+
+[sub_resource type="Environment" id="Environment_veiwc"]
+background_mode = 1
+background_color = Color(0.313799, 0.792279, 0.995409, 1)
+ambient_light_energy = 1.17
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nx46y"]
+
+[node name="main" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 26.4884, 39.4248)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="DirectionalLight3D"]
+environment = SubResource("Environment_veiwc")
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="Node3D2" parent="Level" instance=ExtResource("1_w5kyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4036, 0.952013, -12.1647)
+
+[node name="Node3D3" parent="Level" instance=ExtResource("1_w5kyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.04307, 1.14863, 3.74468)
+
+[node name="Node3D4" parent="Level" instance=ExtResource("1_w5kyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1176, 1.07546, 22.5948)
+
+[node name="Node3D6" parent="Level" instance=ExtResource("1_w5kyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.20302, 0.981137, -7.7258)
+
+[node name="Node3D7" parent="Level" instance=ExtResource("1_w5kyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.233394, 0.871016, -3.8629)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("2_xrftk")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_nx46y")
+
+[node name="terrain" parent="." instance=ExtResource("3_x3jfn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.026516, 4.76837e-07, 0.0263777)
