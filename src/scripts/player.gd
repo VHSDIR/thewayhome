@@ -8,18 +8,22 @@ const LOOPING_DISTANCE = 70
 var PREVIOUS_POSITION: Vector3
 var ui_visible = false
 var is_pause_menu_visible = false
+var points = 0
 signal custom_position_reseted
 @export var camera_node: Node3D
 func _ready():
-	$Control/SpeedMeter.visible = false
-	$Control/FPS.visible = false
-	$Control/Position.visible = false
+	$Control/SpeedMeter.visible = true
+	$Control/FPS.visible = true
+	$Control/Position.visible = true
 	$Control/PauseMenu.visible = false
+	$Control/Points.visible = true
+	_update_points_display()
 func toggle_ui_visibility():
 	ui_visible = not ui_visible
 	$Control/SpeedMeter.visible = ui_visible
 	$Control/FPS.visible = ui_visible
 	$Control/Position.visible = ui_visible
+	$Control/Points.visible = ui_visible
 func toggle_pause_menu():
 	is_pause_menu_visible = not is_pause_menu_visible
 	$Control/PauseMenu.visible = is_pause_menu_visible
@@ -68,4 +72,10 @@ func _physics_process(delta):
 	if position.z > LOOPING_DISTANCE:
 		position.z = -LOOPING_DISTANCE
 		custom_position_reseted.emit()
+		_increase_points()
 	move_and_slide()
+func _increase_points():
+	points += 1
+	_update_points_display()
+func _update_points_display():
+	$Control/Points.text = "Map Resets: %d" % points

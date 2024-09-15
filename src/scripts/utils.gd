@@ -1,3 +1,4 @@
+class_name utils
 extends Node
 static func get_random_value(range_value: float) -> float:
 	return randf_range(-range_value, range_value)

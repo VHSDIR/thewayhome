@@ -57,3 +57,12 @@ vertical_alignment = 1
 
 [node name="PauseMenu" parent="Control" instance=ExtResource("2_mriif")]
 layout_mode = 1
+
+[node name="Points" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -289.0
+offset_top = 364.0
+offset_right = -83.0
+offset_bottom = 433.0
+theme_override_font_sizes/font_size = 50
+text = "Points: 0"
