@@ -5,12 +5,10 @@ const MAX_SPEED = 10.0
 const ROTATION_SPEED = 2.0
 var PREVIOUS_POSITION: Vector3
 @export var camera_node: Node3D
+
 func float_to_speed(value: float) -> String:
-	var rounded_value = round(value)
-	if abs(value - rounded_value) < 0.1:
-		return "%d" % int(rounded_value)
-	else:
-		return "%0.1f" % value
+	return "%0.1f" % value
+
 func get_speed_color(speed: float) -> Color:
 	var t = speed / MAX_SPEED
 	return Color(1, 1 - t, 1 - t)
