@@ -38,11 +38,6 @@ transform = Transform3D(4.507, 0, 0, 0, 10, 0, 0, 0, 0.005, -5, 3.761, 2.5)
 mesh = SubResource("BoxMesh_5ekr0")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Bus"]
-transform = Transform3D(2035.7, -9.09495e-13, -3.55271e-15, -1.81899e-12, 1094.62, 9.31323e-10, 2.91038e-11, -3.8147e-06, 0.260503, 7.95808e-13, 5.13475, -25.2273)
-mesh = SubResource("BoxMesh_5ekr0")
-skeleton = NodePath("")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_kfv1j")
