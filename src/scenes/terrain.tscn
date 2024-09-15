@@ -13,18 +13,18 @@ material = ExtResource("2_v8c2m")
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="CharacterBody3D"]
-transform = Transform3D(495, 0, 0, 0, 1, 0, 0, 0, 10000, -250, 0.2, 0)
+transform = Transform3D(495, 0, 0, 0, 1, 0, 0, 0, 1000, -250, 0.2, 0)
 material_override = ExtResource("2_v8c2m")
 mesh = SubResource("BoxMesh_5x3jh")
 skeleton = NodePath("../MeshInstance3D2")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D"]
-transform = Transform3D(495, 0, 0, 0, 1, 0, 0, 0, 10000, 250, 0.1, 0)
+transform = Transform3D(495, 0, 0, 0, 1, 0, 0, 0, 1000, 250, 0.1, 0)
 material_override = ExtResource("2_v8c2m")
 mesh = SubResource("BoxMesh_5x3jh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 10000, 0, 0, 0)
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 1000, 0, 0, 0)
 material_override = ExtResource("1_cmp5j")
 mesh = SubResource("BoxMesh_5x3jh")
 skeleton = NodePath("../..")

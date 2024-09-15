@@ -3,6 +3,7 @@ extends CharacterBody3D
 var CURRENT_SPEED = 0
 const MAX_SPEED = 10.0
 const ROTATION_SPEED = 2.0
+const LOOPING_DISTANCE = 300
 var PREVIOUS_POSITION: Vector3
 @export var camera_node: Node3D
 
@@ -43,8 +44,14 @@ func _physics_process(delta):
 	var distance = position.distance_to(PREVIOUS_POSITION)
 	var speed = distance / delta
 	PREVIOUS_POSITION = position
-	$Control/Label.text = float_to_speed(speed)
-	$Control/Label.modulate = get_speed_color(CURRENT_SPEED)
+	$Control/SpeedMeter.text = float_to_speed(speed)
+	$Control/SpeedMeter.modulate = get_speed_color(CURRENT_SPEED)
 	var fps = Engine.get_frames_per_second()
 	$Control/FPS.text = "FPS: %d" % fps
+
+	$Control/CurrentZ.text = "Z: %d" % position.z
+
+	if position.z > LOOPING_DISTANCE:
+		position.z = -LOOPING_DISTANCE
+
 	move_and_slide()
