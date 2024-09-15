@@ -5,15 +5,25 @@ const MAX_SPEED = 10.0
 const ROTATION_SPEED = 2.0
 const LOOPING_DISTANCE = 300
 var PREVIOUS_POSITION: Vector3
+var ui_visible = false
 @export var camera_node: Node3D
-
+func _ready():
+	$Control/SpeedMeter.visible = false
+	$Control/FPS.visible = false
+	$Control/CurrentZ.visible = false
 func float_to_speed(value: float) -> String:
 	return "%0.1f" % value
-
 func get_speed_color(speed: float) -> Color:
 	var t = speed / MAX_SPEED
 	return Color(1, 1 - t, 1 - t)
+func toggle_ui_visibility():
+	ui_visible = not ui_visible
+	$Control/SpeedMeter.visible = ui_visible
+	$Control/FPS.visible = ui_visible
+	$Control/CurrentZ.visible = ui_visible
 func _process(_delta):
+	if Input.is_action_just_pressed("toggle_ui"):
+		toggle_ui_visibility()
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 func _physics_process(delta):
@@ -48,10 +58,7 @@ func _physics_process(delta):
 	$Control/SpeedMeter.modulate = get_speed_color(CURRENT_SPEED)
 	var fps = Engine.get_frames_per_second()
 	$Control/FPS.text = "FPS: %d" % fps
-
 	$Control/CurrentZ.text = "Z: %d" % position.z
-
 	if position.z > LOOPING_DISTANCE:
 		position.z = -LOOPING_DISTANCE
-
 	move_and_slide()

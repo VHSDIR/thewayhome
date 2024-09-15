@@ -41,14 +41,14 @@ script = ExtResource("2_wwvy4")
 layout_mode = 2
 text = "Start"
 
-[node name="How to Play" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Help" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "How to Play"
+text = "Help"
 
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/How to Play" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Help" to="." method="_on_help_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

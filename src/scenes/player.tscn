@@ -1,0 +1,89 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs8f1p76tn61f"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_cm6tq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ekr0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kfv1j"]
+
+[node name="Player" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.57453)
+script = ExtResource("1_cm6tq")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(-1, 8.013e-09, 8.70548e-08, 0, 0.99579, -0.091658, -8.74228e-08, -0.091658, -0.99579, 0, 2, 0)
+
+[node name="Bus" type="CharacterBody3D" parent="CharacterBody3D/Camera3D"]
+transform = Transform3D(-1, 7.69764e-16, 8.74228e-08, -3.50386e-09, 0.999196, -0.0400795, -8.73525e-08, -0.0400795, -0.999196, -5.0227e-08, -2.73983, 0.463932)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Bus"]
+transform = Transform3D(10.1785, 0, 0, 0, 5.47308, 0, 0, 0, 0.260503, 0, 6.86, 2.5)
+mesh = SubResource("BoxMesh_5ekr0")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Bus"]
+transform = Transform3D(10.1785, 0, 0, 0, 5.47308, 0, 0, 0, 0.260503, 0, -0.687, 2.5)
+mesh = SubResource("BoxMesh_5ekr0")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Bus"]
+transform = Transform3D(2.12286, 0, 0, 0, 29.9546, 0, 0, 0, 0.0678616, 3.79685, 6.038, 2.5)
+mesh = SubResource("BoxMesh_5ekr0")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Bus"]
+transform = Transform3D(4.507, 0, 0, 0, 10, 0, 0, 0, 0.005, -5, 3.761, 2.5)
+mesh = SubResource("BoxMesh_5ekr0")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="CharacterBody3D/Camera3D/Bus"]
+transform = Transform3D(2035.7, -9.09495e-13, -3.55271e-15, -1.81899e-12, 1094.62, 9.31323e-10, 2.91038e-11, -3.8147e-06, 0.260503, 7.95808e-13, 5.13475, -25.2273)
+mesh = SubResource("BoxMesh_5ekr0")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_kfv1j")
+
+[node name="Control" type="Control" parent="CharacterBody3D"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 303.0
+offset_top = 199.0
+offset_right = 609.0
+offset_bottom = 314.0
+
+[node name="SpeedMeter" type="Label" parent="CharacterBody3D/Control"]
+layout_mode = 1
+offset_left = 612.0
+offset_top = 778.0
+offset_right = 766.0
+offset_bottom = 848.0
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FPS" type="Label" parent="CharacterBody3D/Control"]
+layout_mode = 0
+offset_left = -297.0
+offset_top = -191.0
+offset_right = 346.0
+offset_bottom = -121.0
+theme_override_font_sizes/font_size = 50
+text = "FPS: 0"
+vertical_alignment = 1
+
+[node name="CurrentZ" type="Label" parent="CharacterBody3D/Control"]
+layout_mode = 0
+offset_left = -285.0
+offset_top = -124.0
+offset_right = -103.0
+offset_bottom = -69.0
+theme_override_font_sizes/font_size = 40
+text = "0"
+vertical_alignment = 1
+
+[node name="Node3D" type="Node3D" parent="."]

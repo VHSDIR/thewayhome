@@ -1,75 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://0fje57i0c0sj"]
+[gd_scene load_steps=5 format=3 uid="uid://0fje57i0c0sj"]
 
 [ext_resource type="PackedScene" uid="uid://d26te0gv7khjd" path="res://scenes/block.tscn" id="1_w5kyn"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="2_xrftk"]
+[ext_resource type="PackedScene" uid="uid://cs8f1p76tn61f" path="res://scenes/player.tscn" id="2_4guff"]
 [ext_resource type="PackedScene" uid="uid://d2754k6brsb7x" path="res://scenes/terrain.tscn" id="3_x3jfn"]
 
-[sub_resource type="Environment" id="Environment_veiwc"]
+[sub_resource type="Environment" id="Environment_d8eq5"]
 background_mode = 1
-background_color = Color(0.313799, 0.792279, 0.995409, 1)
-ambient_light_energy = 1.17
+background_color = Color(0.517957, 0.674064, 1, 1)
+glow_enabled = true
+glow_intensity = 1.9
+glow_strength = 1.24
+fog_enabled = true
+fog_light_color = Color(0.770425, 0.735434, 7.70092e-07, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_nx46y"]
-
-[node name="main" type="Node3D"]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 26.4884, 39.4248)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="DirectionalLight3D"]
-environment = SubResource("Environment_veiwc")
+[node name="Main" type="Node3D"]
 
 [node name="Level" type="Node3D" parent="."]
 
-[node name="Node3D2" parent="Level" instance=ExtResource("1_w5kyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 10)
+[node name="Block" parent="Level" instance=ExtResource("1_w5kyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8805, 0.935375, 12.0031)
 
-[node name="Node3D7" parent="Level" instance=ExtResource("1_w5kyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.876879, 1.5, 12)
+[node name="Block2" parent="Level" instance=ExtResource("1_w5kyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.993688, 10)
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.57453)
-script = ExtResource("2_xrftk")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 26.4884, 39.4248)
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.61059, 0)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Level"]
+environment = SubResource("Environment_d8eq5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_nx46y")
+[node name="Terrain" parent="Level" instance=ExtResource("3_x3jfn")]
 
-[node name="Control" type="Control" parent="CharacterBody3D"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 303.0
-offset_top = 199.0
-offset_right = 609.0
-offset_bottom = 314.0
+[node name="Player" parent="." instance=ExtResource("2_4guff")]
+transform = Transform3D(0.999391, 0, 0.0348995, 0, 1, 0, -0.0348995, 0, 0.999391, 0, 0, 0)
 
-[node name="SpeedMeter" type="Label" parent="CharacterBody3D/Control"]
-layout_mode = 1
-offset_left = -293.0
-offset_top = -115.0
-offset_right = -139.0
-offset_bottom = -45.0
-theme_override_font_sizes/font_size = 50
-text = "0"
-vertical_alignment = 1
-
-[node name="FPS" type="Label" parent="CharacterBody3D/Control"]
-layout_mode = 0
-offset_left = -297.0
-offset_top = -191.0
-offset_right = -143.0
-offset_bottom = -121.0
-theme_override_font_sizes/font_size = 50
-text = "FPS: 0"
-vertical_alignment = 1
-
-[node name="CurrentZ" type="Label" parent="CharacterBody3D/Control"]
-layout_mode = 0
-offset_right = 329.0
-offset_bottom = 172.0
-
-[node name="terrain" parent="." instance=ExtResource("3_x3jfn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83404, 0.912781, 0.259051)
+[node name="Node3D" type="Node3D" parent="Player"]
