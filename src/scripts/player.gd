@@ -1,21 +1,21 @@
 class_name player
 extends CharacterBody3D
+
+var utils = preload("res://scripts/utils.gd")  
+
 var CURRENT_SPEED = 0
 const MAX_SPEED = 10.0
 const ROTATION_SPEED = 2.0
-const LOOPING_DISTANCE = 300
+const LOOPING_DISTANCE = 70
 var PREVIOUS_POSITION: Vector3
 var ui_visible = false
+signal custom_position_reseted;
+
 @export var camera_node: Node3D
 func _ready():
 	$Control/SpeedMeter.visible = false
 	$Control/FPS.visible = false
 	$Control/CurrentZ.visible = false
-func float_to_speed(value: float) -> String:
-	return "%0.1f" % value
-func get_speed_color(speed: float) -> Color:
-	var t = speed / MAX_SPEED
-	return Color(1, 1 - t, 1 - t)
 func toggle_ui_visibility():
 	ui_visible = not ui_visible
 	$Control/SpeedMeter.visible = ui_visible
@@ -54,11 +54,12 @@ func _physics_process(delta):
 	var distance = position.distance_to(PREVIOUS_POSITION)
 	var speed = distance / delta
 	PREVIOUS_POSITION = position
-	$Control/SpeedMeter.text = float_to_speed(speed)
-	$Control/SpeedMeter.modulate = get_speed_color(CURRENT_SPEED)
+	$Control/SpeedMeter.text = utils.float_to_speed(speed)
+	$Control/SpeedMeter.modulate = utils.get_speed_color(CURRENT_SPEED, MAX_SPEED)
 	var fps = Engine.get_frames_per_second()
 	$Control/FPS.text = "FPS: %d" % fps
 	$Control/CurrentZ.text = "Z: %d" % position.z
 	if position.z > LOOPING_DISTANCE:
 		position.z = -LOOPING_DISTANCE
+		custom_position_reseted.emit()
 	move_and_slide()
