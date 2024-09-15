@@ -9,11 +9,11 @@
 script = ExtResource("1_cm6tq")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 8.013e-09, 8.70548e-08, 0, 0.995791, -0.0916581, -8.74228e-08, -0.0916581, -0.995791, 0, 3, 0.57453)
+transform = Transform3D(-1, 7.6194e-09, -8.70902e-08, 0, 0.996195, 0.0871558, 8.74228e-08, 0.0871558, -0.996195, 0, 0, 0)
 current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.57453)
+transform = Transform3D(1, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0.575)
 shape = SubResource("BoxShape3D_kfv1j")
 
 [node name="Control" type="Control" parent="."]
