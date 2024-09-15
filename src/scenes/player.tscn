@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cs8f1p76tn61f"]
+[gd_scene load_steps=4 format=3 uid="uid://cs8f1p76tn61f"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cm6tq"]
+[ext_resource type="PackedScene" uid="uid://dvblc8w4k7bli" path="res://scenes/pause_menu.tscn" id="2_mriif"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kfv1j"]
 
@@ -44,12 +45,15 @@ theme_override_font_sizes/font_size = 50
 text = "FPS: 0"
 vertical_alignment = 1
 
-[node name="CurrentZ" type="Label" parent="Control"]
+[node name="Position" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = -285.0
+offset_left = -292.0
 offset_top = -124.0
 offset_right = -103.0
 offset_bottom = -69.0
 theme_override_font_sizes/font_size = 40
 text = "0"
 vertical_alignment = 1
+
+[node name="PauseMenu" parent="Control" instance=ExtResource("2_mriif")]
+layout_mode = 1

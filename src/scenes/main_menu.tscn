@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://clsftf0b26r7h"]
+[gd_scene load_steps=2 format=3 uid="uid://clsftf0b26r7h"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_ypld2"]
-[ext_resource type="Script" path="res://scripts/rainbow.gd" id="2_wwvy4"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -35,11 +34,10 @@ theme_override_font_sizes/font_size = 30
 text = "The Way Home"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("2_wwvy4")
 
-[node name="Start" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Start"
+text = "Play"
 
 [node name="Help" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -49,6 +47,6 @@ text = "Help"
 layout_mode = 2
 text = "Exit"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Help" to="." method="_on_help_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
