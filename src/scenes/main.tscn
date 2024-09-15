@@ -46,3 +46,5 @@ environment = SubResource("Environment_d8eq5")
 [node name="Terrain" parent="." instance=ExtResource("3_x3jfn")]
 
 [node name="Player" parent="." instance=ExtResource("2_4guff")]
+
+[connection signal="custom_position_reseted" from="Player" to="." method="_on_player_custom_position_reseted"]
