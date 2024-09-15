@@ -24,15 +24,6 @@ environment = SubResource("Environment_veiwc")
 [node name="Node3D2" parent="Level" instance=ExtResource("1_w5kyn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4036, -4.84818, 35.2749)
 
-[node name="Node3D3" parent="Level" instance=ExtResource("1_w5kyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.256447, 1.14863, 26.7197)
-
-[node name="Node3D4" parent="Level" instance=ExtResource("1_w5kyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.56484, 10.3123, 22.5948)
-
-[node name="Node3D6" parent="Level" instance=ExtResource("1_w5kyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.20302, 0.981137, 89.3582)
-
 [node name="Node3D7" parent="Level" instance=ExtResource("1_w5kyn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96629, 0.871014, 44.1006)
 
@@ -41,7 +32,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.57453)
 script = ExtResource("2_xrftk")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.61059, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -56,14 +47,23 @@ offset_right = 609.0
 offset_bottom = 314.0
 
 [node name="Label" type="Label" parent="CharacterBody3D/Control"]
-layout_mode = 0
-offset_left = 188.0
-offset_top = 363.0
-offset_right = 429.0
-offset_bottom = 433.0
+layout_mode = 1
+offset_left = -293.0
+offset_top = -115.0
+offset_right = -139.0
+offset_bottom = -45.0
 theme_override_font_sizes/font_size = 50
-text = "20.2"
-horizontal_alignment = 1
+text = "0"
+vertical_alignment = 1
+
+[node name="FPS" type="Label" parent="CharacterBody3D/Control"]
+layout_mode = 0
+offset_left = -297.0
+offset_top = -191.0
+offset_right = -143.0
+offset_bottom = -121.0
+theme_override_font_sizes/font_size = 50
+text = "FPS: 0"
 vertical_alignment = 1
 
 [node name="terrain" parent="." instance=ExtResource("3_x3jfn")]
