@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_mr7cd"]
 [ext_resource type="PackedScene" uid="uid://clsftf0b26r7h" path="res://scenes/main_menu.tscn" id="1_xjrtt"]
-[ext_resource type="PackedScene" uid="uid://dddktftjb2dnj" path="res://scenes/options_menu.tscn" id="2_aif8j"]
+[ext_resource type="PackedScene" uid="uid://dddktftjb2dnj" path="res://scenes/settings_menu.tscn" id="2_aif8j"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -16,5 +16,5 @@ script = ExtResource("1_mr7cd")
 [node name="MainMenu" parent="." instance=ExtResource("1_xjrtt")]
 layout_mode = 1
 
-[node name="OptionsMenu" parent="." instance=ExtResource("2_aif8j")]
+[node name="SettingsMenu" parent="." instance=ExtResource("2_aif8j")]
 layout_mode = 1

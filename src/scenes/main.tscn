@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cs8f1p76tn61f" path="res://scenes/player.tscn" id="2_4guff"]
 [ext_resource type="PackedScene" uid="uid://b83dcv6fewvk8" path="res://scenes/start_sign.tscn" id="2_8eqav"]
 [ext_resource type="PackedScene" uid="uid://d2754k6brsb7x" path="res://scenes/terrain.tscn" id="3_x3jfn"]
-[ext_resource type="PackedScene" uid="uid://bbkg7ulps68cf" path="res://scenes/obstacleaction01.tscn" id="4_krrul"]
+[ext_resource type="PackedScene" uid="uid://bbkg7ulps68cf" path="res://scenes/sarna.tscn" id="4_krrul"]
 [ext_resource type="PackedScene" uid="uid://ejt2iy3ndq6q" path="res://scenes/obstacleaction02.tscn" id="4_shuqu"]
 
 [sub_resource type="Environment" id="Environment_d8eq5"]

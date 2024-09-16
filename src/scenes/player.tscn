@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cs8f1p76tn61f"]
+[gd_scene load_steps=5 format=3 uid="uid://cs8f1p76tn61f"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cm6tq"]
+[ext_resource type="Script" path="res://scripts/rainbow.gd" id="2_1ttta"]
 [ext_resource type="PackedScene" uid="uid://dvblc8w4k7bli" path="res://scenes/pause_menu.tscn" id="2_mriif"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kfv1j"]
@@ -34,6 +35,7 @@ theme_override_font_sizes/font_size = 50
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("2_1ttta")
 
 [node name="FPS" type="Label" parent="Control"]
 layout_mode = 0
@@ -44,6 +46,7 @@ offset_bottom = -121.0
 theme_override_font_sizes/font_size = 50
 text = "FPS: 0"
 vertical_alignment = 1
+script = ExtResource("2_1ttta")
 
 [node name="Position" type="Label" parent="Control"]
 layout_mode = 0
@@ -54,6 +57,7 @@ offset_bottom = -69.0
 theme_override_font_sizes/font_size = 40
 text = "0"
 vertical_alignment = 1
+script = ExtResource("2_1ttta")
 
 [node name="PauseMenu" parent="Control" instance=ExtResource("2_mriif")]
 layout_mode = 1
@@ -65,4 +69,15 @@ offset_top = 364.0
 offset_right = -83.0
 offset_bottom = 433.0
 theme_override_font_sizes/font_size = 50
-text = "Points: 0"
+text = "Map Resets: 0"
+script = ExtResource("2_1ttta")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -294.0
+offset_top = 296.0
+offset_right = 159.0
+offset_bottom = 365.0
+theme_override_font_sizes/font_size = 50
+text = "Get 3 Map Resets to win"
+script = ExtResource("2_1ttta")
