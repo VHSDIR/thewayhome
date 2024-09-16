@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvblc8w4k7bli"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_yb3vf"]
+[ext_resource type="Shader" path="res://assets/main_menu.gdshader" id="2_68p74"]
+[ext_resource type="Script" path="res://scripts/rainbow.gd" id="3_owv6n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pfota"]
+shader = ExtResource("2_68p74")
+shader_parameter/amount = null
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yb3vf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_pfota")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -648.0
+offset_top = -387.0
+offset_right = 1588.0
+offset_bottom = 959.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 277.0
+offset_top = 246.0
+offset_right = 708.0
+offset_bottom = 358.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Game Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_owv6n")
+
+[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
