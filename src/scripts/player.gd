@@ -1,6 +1,6 @@
 class_name player
 extends CharacterBody3D
-var utils = preload("res://scripts/utils.gd")  
+var helpers = preload("res://scripts/helpers.gd")
 var CURRENT_SPEED = 0
 const MAX_SPEED = 50.0
 const ROTATION_SPEED = 2.0
@@ -64,8 +64,8 @@ func _physics_process(delta):
 	var distance = position.distance_to(PREVIOUS_POSITION)
 	var speed = distance / delta
 	PREVIOUS_POSITION = position
-	$Control/SpeedMeter.text = utils.float_to_speed(speed)
-	$Control/SpeedMeter.modulate = utils.get_speed_color(CURRENT_SPEED, MAX_SPEED)
+	$Control/SpeedMeter.text = helpers.float_to_speed(speed)
+	$Control/SpeedMeter.modulate = helpers.get_speed_color(CURRENT_SPEED, MAX_SPEED)
 	var fps = Engine.get_frames_per_second()
 	$Control/FPS.text = "FPS: %d" % fps
 	$Control/Position.text = "X: %d Y: %d Z: %d" % [position.x, position.y, position.z]

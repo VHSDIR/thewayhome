@@ -37,7 +37,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.752, 0, 12.003)
 [node name="Obstacle02" parent="Randomizer/ObstaclesHolder" instance=ExtResource("1_w5kyn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 10)
 
-[node name="ObstacleAction01" parent="Randomizer/ObstaclesHolder" instance=ExtResource("4_shuqu")]
+[node name="ObstacleAction01" parent="Randomizer" instance=ExtResource("4_shuqu")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.603247, 0, 9.84024)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
