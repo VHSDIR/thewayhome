@@ -4,6 +4,8 @@ var CURRENT_SPEED = 0
 const MAX_SPEED = 10.0
 const ROTATION_SPEED = 2.0
 const LOOPING_DISTANCE = 100
+const SIDEROAD_START_X = 2;
+const SIDEROAD_MAX_X = 4;
 var PREVIOUS_POSITION: Vector3
 var points = 0
 signal custom_position_reseted
@@ -77,12 +79,19 @@ func _physics_process(delta):
 	$Control/SpeedMeter.modulate = helpers.get_speed_color(CURRENT_SPEED, MAX_SPEED)
 	var fps = Engine.get_frames_per_second()
 	$Control/FPS.text = "FPS: %d" % fps
-	$Control/Position.text = "X: %d Y: %d Z: %d" % [position.x, position.y, position.z]
+	$Control/Position.text = "X: %d Z: %d" % [position.x, position.z]
 	if position.z > LOOPING_DISTANCE:
 		position.z = -LOOPING_DISTANCE
 		custom_position_reseted.emit()
 		_increase_points()
+
+	var currentSpeedFactor = CURRENT_SPEED / MAX_SPEED;
+	var shake_factor = helpers.cast_value_range_to_factor(abs(position.x), SIDEROAD_START_X, SIDEROAD_MAX_X)
+	$Camera3D.set_shake_factor(shake_factor * currentSpeedFactor)
+
 	move_and_slide()
+
+	global_position.x = clamp(global_position.x, -SIDEROAD_MAX_X, SIDEROAD_MAX_X)
 func _increase_points():
 	points += 1
 	_update_points_display()

@@ -8,3 +8,6 @@ static func get_speed_color(speed: float, MAX_SPEED: float) -> Color:
 	return Color(1, 1 - t, 1 - t)
 static func random_range(rangeValue: float) -> float:
 	return randf_range(-rangeValue, rangeValue)
+static func cast_value_range_to_factor(value: float, valueMin: float, valueMax: float) -> float:
+	var diff = valueMax - valueMin;
+	return clamp((value - valueMin) / diff, 0, 1);

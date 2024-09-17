@@ -22,8 +22,4 @@ func reset_obstacles():
 	elif picked_obstacle == 2:
 		$Randomizer/ObstacleAction01.position.x = helpers.random_range(OBSTALES_RANGE)
 	for i in range(NUM_OF_OBSTACLES):
-		var child = OBSTACLES[i]
-		if i == picked_obstacle:
-			child.scale = Vector3.ONE
-		else:
-			child.scale = Vector3.ZERO
+		OBSTACLES[i].scale = Vector3.ONE if i == picked_obstacle else Vector3.ZERO
