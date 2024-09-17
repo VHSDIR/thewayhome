@@ -18,6 +18,7 @@ func _ready():
 	$Control/Position.visible = true
 	$Control/PauseMenu.visible = false
 	$Control/Points.visible = true
+	$Control/Label.visible = true
 	_update_points_display()
 func toggle_ui_visibility():
 	ui_visible = not ui_visible
@@ -25,6 +26,7 @@ func toggle_ui_visibility():
 	$Control/FPS.visible = ui_visible
 	$Control/Position.visible = ui_visible
 	$Control/Points.visible = ui_visible
+	$Control/Label.visible = ui_visible
 func toggle_pause_menu():
 	is_pause_menu_visible = not is_pause_menu_visible
 	$Control/PauseMenu.visible = is_pause_menu_visible

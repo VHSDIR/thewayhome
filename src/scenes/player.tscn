@@ -90,4 +90,4 @@ autoplay = true
 
 [node name="HornPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_8kamj")
-volume_db = 24.0
+volume_db = 1.0
