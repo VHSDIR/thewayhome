@@ -1,13 +1,10 @@
-class_name player
 extends CharacterBody3D
 var helpers = preload("res://scripts/helpers.gd")
 var CURRENT_SPEED = 0
-const MAX_SPEED = 50.0
+const MAX_SPEED = 10.0
 const ROTATION_SPEED = 2.0
-const LOOPING_DISTANCE = 70
+const LOOPING_DISTANCE = 100
 var PREVIOUS_POSITION: Vector3
-var ui_visible = false
-var is_pause_menu_visible = false
 var points = 0
 signal custom_position_reseted
 @export var camera_node: Node3D
@@ -15,28 +12,35 @@ signal custom_position_reseted
 func _ready():
 	$Control/SpeedMeter.visible = true
 	$Control/FPS.visible = true
-	$Control/Position.visible = true
 	$Control/PauseMenu.visible = false
+	$Control/Position.visible = true
 	$Control/Points.visible = true
-	$Control/Label.visible = true
 	_update_points_display()
-func toggle_ui_visibility():
-	ui_visible = not ui_visible
-	$Control/SpeedMeter.visible = ui_visible
-	$Control/FPS.visible = ui_visible
-	$Control/Position.visible = ui_visible
-	$Control/Points.visible = ui_visible
-	$Control/Label.visible = ui_visible
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+func _on_continue_pressed():
+	restore_ui_elements()
 func toggle_pause_menu():
-	is_pause_menu_visible = not is_pause_menu_visible
-	$Control/PauseMenu.visible = is_pause_menu_visible
-	if is_pause_menu_visible:
-		Engine.time_scale = 0
-	else:
+	if $Control/PauseMenu.visible:
+		$Control/PauseMenu.visible = false
 		Engine.time_scale = 1
+		restore_ui_elements()
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	else:
+		$Control/PauseMenu.visible = true
+		Engine.time_scale = 0
+		hide_ui_elements()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+func hide_ui_elements():
+	$Control/SpeedMeter.visible = false
+	$Control/FPS.visible = false
+	$Control/Position.visible = false
+	$Control/Points.visible = false
+func restore_ui_elements():
+	$Control/SpeedMeter.visible = true
+	$Control/FPS.visible = true
+	$Control/Position.visible = true
+	$Control/Points.visible = true
 func _process(_delta):
-	if Input.is_action_just_pressed("toggle_ui"):
-		toggle_ui_visibility()
 	if Input.is_action_just_pressed("ui_cancel"):
 		toggle_pause_menu()
 	if Input.is_action_just_pressed("horn_pressed"):
@@ -48,9 +52,9 @@ func _physics_process(delta):
 		velocity += get_gravity() * delta
 	var isAcceleratePressed = Input.is_action_pressed("move_front")
 	if isAcceleratePressed:
-		CURRENT_SPEED += delta
+		CURRENT_SPEED += 2 * delta
 	elif CURRENT_SPEED > 0:
-		CURRENT_SPEED -= delta
+		CURRENT_SPEED -= 2 * delta
 		if CURRENT_SPEED < 0:
 			CURRENT_SPEED = 0
 	CURRENT_SPEED = clamp(CURRENT_SPEED, 0, MAX_SPEED)
@@ -85,6 +89,7 @@ func _increase_points():
 	if points >= 3:
 		_load_win_menu()
 func _load_win_menu():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().change_scene_to_file("res://scenes/win_menu.tscn")
 func _update_points_display():
 	$Control/Points.text = "Map Resets: %d" % points

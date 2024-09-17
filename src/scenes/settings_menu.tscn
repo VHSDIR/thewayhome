@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dddktftjb2dnj"]
+[gd_scene load_steps=2 format=3 uid="uid://dddktftjb2dnj"]
 
 [ext_resource type="Script" path="res://scripts/settings_menu.gd" id="1_ct68e"]
-[ext_resource type="Script" path="res://scripts/rainbow.gd" id="2_cnanv"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -28,14 +27,6 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "A/D: Rotate
-W: Drive
-F1: Toggle Debug Info
-F2: Rainbow Text"
-script = ExtResource("2_cnanv")
 
 [node name="Fullscreen" type="CheckBox" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
