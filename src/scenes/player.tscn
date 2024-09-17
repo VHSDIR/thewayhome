@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cm6tq"]
 [ext_resource type="PackedScene" uid="uid://dvblc8w4k7bli" path="res://scenes/pause_menu.tscn" id="2_mriif"]
-[ext_resource type="Script" path="res://scripts/camera_shaker.gd" id="2_ue7l3"]
+[ext_resource type="Script" path="res://scripts/camera_shake.gd" id="2_ue7l3"]
 [ext_resource type="AudioStream" uid="uid://cxk11bqqo030q" path="res://assets/desert.mp3" id="4_osacv"]
 [ext_resource type="AudioStream" uid="uid://bqsyvtn2ojxay" path="res://assets/horn.mp3" id="5_8kamj"]
 
@@ -14,13 +14,25 @@
 script = ExtResource("1_cm6tq")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 7.6194e-09, -8.70902e-08, 0, 0.996195, 0.0871558, 8.74228e-08, 0.0871558, -0.996195, 0, 0, 0)
+transform = Transform3D(-1, 7.6194e-09, -8.70901e-08, 0, 0.996195, 0.0871558, 8.74228e-08, 0.0871558, -0.996195, 0, 0, 0)
 current = true
 script = ExtResource("2_ue7l3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0.575)
 shape = SubResource("BoxShape3D_kfv1j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_6o8o6")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_osacv")
+volume_db = -0.5
+autoplay = true
+
+[node name="HornPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8kamj")
+volume_db = 1.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -64,22 +76,11 @@ vertical_alignment = 1
 [node name="PauseMenu" parent="Control" instance=ExtResource("2_mriif")]
 layout_mode = 1
 
-[node name="Points" type="Label" parent="Control"]
+[node name="Resets" type="Label" parent="Control"]
 layout_mode = 0
 offset_left = -295.0
 offset_top = -65.0
 offset_right = -64.0
 offset_bottom = -23.0
 theme_override_font_sizes/font_size = 30
-text = "Map Resets: 0"
-
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_osacv")
-autoplay = true
-
-[node name="HornPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_8kamj")
-volume_db = 1.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_6o8o6")
+text = "Resets: 0"

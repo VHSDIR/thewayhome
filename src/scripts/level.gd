@@ -1,4 +1,3 @@
-class_name level
 extends Node3D
 var helpers = preload("res://scripts/helpers.gd")
 var randomNumberGenerator = RandomNumberGenerator.new()
@@ -10,7 +9,7 @@ func _ready():
 	OBSTACLES = $Randomizer.get_children()
 	reset_obstacles()
 func _on_player_custom_position_reseted():
-	$StartSign.scale = Vector3.ZERO
+	$Enviroment/StartSign.scale = Vector3.ZERO
 	reset_obstacles()
 func reset_obstacles():
 	var picked_obstacle = randomNumberGenerator.randi_range(0, NUM_OF_OBSTACLES - 1)

@@ -4,8 +4,8 @@ var CURRENT_SPEED = 0
 const MAX_SPEED = 10.0
 const ROTATION_SPEED = 2.0
 const LOOPING_DISTANCE = 100
-const SIDEROAD_START_X = 2;
-const SIDEROAD_MAX_X = 4;
+const SIDEROAD_START_X = 2
+const SIDEROAD_MAX_X = 4
 var PREVIOUS_POSITION: Vector3
 var points = 0
 signal custom_position_reseted
@@ -16,8 +16,8 @@ func _ready():
 	$Control/FPS.visible = true
 	$Control/PauseMenu.visible = false
 	$Control/Position.visible = true
-	$Control/Points.visible = true
-	_update_points_display()
+	$Control/Resets.visible = true
+	_update_resets_display()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 func _on_continue_pressed():
 	restore_ui_elements()
@@ -36,12 +36,12 @@ func hide_ui_elements():
 	$Control/SpeedMeter.visible = false
 	$Control/FPS.visible = false
 	$Control/Position.visible = false
-	$Control/Points.visible = false
+	$Control/Resets.visible = false
 func restore_ui_elements():
 	$Control/SpeedMeter.visible = true
 	$Control/FPS.visible = true
 	$Control/Position.visible = true
-	$Control/Points.visible = true
+	$Control/Resets.visible = true
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		toggle_pause_menu()
@@ -84,21 +84,19 @@ func _physics_process(delta):
 		position.z = -LOOPING_DISTANCE
 		custom_position_reseted.emit()
 		_increase_points()
-
-	var currentSpeedFactor = CURRENT_SPEED / MAX_SPEED;
+	var currentSpeedFactor = CURRENT_SPEED / MAX_SPEED
 	var shake_factor = helpers.cast_value_range_to_factor(abs(position.x), SIDEROAD_START_X, SIDEROAD_MAX_X)
 	$Camera3D.set_shake_factor(shake_factor * currentSpeedFactor)
-
 	move_and_slide()
-
 	global_position.x = clamp(global_position.x, -SIDEROAD_MAX_X, SIDEROAD_MAX_X)
+	global_position.y = 1.25
 func _increase_points():
 	points += 1
-	_update_points_display()
+	_update_resets_display()
 	if points >= 3:
 		_load_win_menu()
 func _load_win_menu():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().change_scene_to_file("res://scenes/win_menu.tscn")
-func _update_points_display():
-	$Control/Points.text = "Map Resets: %d" % points
+func _update_resets_display():
+	$Control/Resets.text = "Resets: %d" % points

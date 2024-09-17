@@ -1,4 +1,3 @@
-class_name settings_menu
 extends Control
 func _on_back_pressed() -> void:
 	self.hide()

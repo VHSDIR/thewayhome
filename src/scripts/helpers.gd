@@ -1,4 +1,3 @@
-class_name utils
 extends Node
 static var randomNumberGenerator = RandomNumberGenerator.new()
 static func float_to_speed(value: float) -> String:
