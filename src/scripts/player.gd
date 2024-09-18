@@ -2,6 +2,9 @@ extends CharacterBody3D
 var helpers = preload("res://scripts/helpers.gd")
 var CURRENT_SPEED = 0
 const MAX_SPEED = 10.0
+const REVERSE_SPEED = -5.0
+const ACCELERATION = 2.0
+const COAST_DECELERATION = 4.0
 const ROTATION_SPEED = 2.0
 const LOOPING_DISTANCE = 100
 const SIDEROAD_START_X = 2
@@ -53,25 +56,37 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	var isAcceleratePressed = Input.is_action_pressed("move_front")
+	var isBrakePressed = Input.is_action_pressed("move_back")
 	if isAcceleratePressed:
-		CURRENT_SPEED += 2 * delta
-	elif CURRENT_SPEED > 0:
-		CURRENT_SPEED -= 2 * delta
-		if CURRENT_SPEED < 0:
-			CURRENT_SPEED = 0
-	CURRENT_SPEED = clamp(CURRENT_SPEED, 0, MAX_SPEED)
+		CURRENT_SPEED += ACCELERATION * delta
+	elif isBrakePressed:
+		CURRENT_SPEED -= ACCELERATION * delta
+	else:
+		if CURRENT_SPEED > 0:
+			CURRENT_SPEED -= COAST_DECELERATION * delta
+		elif CURRENT_SPEED < 0:
+			CURRENT_SPEED += COAST_DECELERATION * delta
+	CURRENT_SPEED = clamp(CURRENT_SPEED, REVERSE_SPEED, MAX_SPEED)
 	var input_dir = Input.get_vector("rotate_left", "rotate_right", "move_back", "move_front")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, 1)).normalized()
 	if direction:
 		velocity.x = CURRENT_SPEED * direction.x
 		velocity.z = CURRENT_SPEED * direction.z
 	else:
-		velocity.x = move_toward(velocity.x, 0, CURRENT_SPEED)
-		velocity.z = move_toward(velocity.z, 0, CURRENT_SPEED)
-	if Input.is_action_pressed("rotate_left"):
-		rotate_y(ROTATION_SPEED * delta)
-	elif Input.is_action_pressed("rotate_right"):
-		rotate_y(-ROTATION_SPEED * delta)
+		velocity.x = move_toward(velocity.x, 0, abs(CURRENT_SPEED))
+		velocity.z = move_toward(velocity.z, 0, abs(CURRENT_SPEED))
+	if CURRENT_SPEED != 0:
+		var rotation_amount = ROTATION_SPEED * delta * (abs(CURRENT_SPEED) / MAX_SPEED)
+		if Input.is_action_pressed("rotate_left"):
+			if CURRENT_SPEED > 0:
+				rotate_y(rotation_amount)
+			else:
+				rotate_y(-rotation_amount)
+		elif Input.is_action_pressed("rotate_right"):
+			if CURRENT_SPEED > 0:
+				rotate_y(-rotation_amount)
+			else:
+				rotate_y(rotation_amount)
 	var distance = position.distance_to(PREVIOUS_POSITION)
 	var speed = distance / delta
 	PREVIOUS_POSITION = position
@@ -84,7 +99,7 @@ func _physics_process(delta):
 		position.z = -LOOPING_DISTANCE
 		custom_position_reseted.emit()
 		_increase_points()
-	var currentSpeedFactor = CURRENT_SPEED / MAX_SPEED
+	var currentSpeedFactor = abs(CURRENT_SPEED) / MAX_SPEED
 	var shake_factor = helpers.cast_value_range_to_factor(abs(position.x), SIDEROAD_START_X, SIDEROAD_MAX_X)
 	$Camera3D.set_shake_factor(shake_factor * currentSpeedFactor)
 	move_and_slide()
