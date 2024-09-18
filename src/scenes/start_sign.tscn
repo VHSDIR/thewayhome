@@ -1,22 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b83dcv6fewvk8"]
+[gd_scene load_steps=3 format=3 uid="uid://b83dcv6fewvk8"]
 
-[ext_resource type="Texture2D" uid="uid://r5jx48b6csbm" path="res://assets/start-sign.png" id="1_60jf3"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcgs8"]
-albedo_texture = ExtResource("1_60jf3")
+[ext_resource type="Material" uid="uid://bojh8008x327y" path="res://assets/start-sign-material.tres" id="1_y7ona"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_qlryk"]
 
 [node name="StartSign" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1.75873, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, 0)
-material_override = SubResource("StandardMaterial3D_xcgs8")
-mesh = SubResource("QuadMesh_qlryk")
-
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0.5, 0)
-material_override = SubResource("StandardMaterial3D_xcgs8")
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, 0)
+material_override = ExtResource("1_y7ona")
+ignore_occlusion_culling = true
 mesh = SubResource("QuadMesh_qlryk")
-skeleton = NodePath("../MeshInstance3D")
+skeleton = NodePath("")

@@ -12,6 +12,7 @@ const SIDEROAD_MAX_X = 4
 var PREVIOUS_POSITION: Vector3
 var points = 0
 signal custom_position_reseted
+signal custom_player_horn
 @export var camera_node: Node3D
 @export var horn_player: AudioStreamPlayer
 func _ready():
@@ -50,6 +51,7 @@ func _process(_delta):
 		toggle_pause_menu()
 	if Input.is_action_just_pressed("horn_pressed"):
 		$HornPlayer.play()
+		custom_player_horn.emit()
 func _physics_process(delta):
 	if PREVIOUS_POSITION == null:
 		PREVIOUS_POSITION = global_position

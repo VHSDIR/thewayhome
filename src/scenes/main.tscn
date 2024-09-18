@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://0fje57i0c0sj"]
+[gd_scene load_steps=16 format=3 uid="uid://0fje57i0c0sj"]
 
 [ext_resource type="PackedScene" uid="uid://d26te0gv7khjd" path="res://scenes/block.tscn" id="1_w5kyn"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_wyd1u"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://d2754k6brsb7x" path="res://scenes/terrain.tscn" id="3_x3jfn"]
 [ext_resource type="PackedScene" uid="uid://bbkg7ulps68cf" path="res://scenes/obstacleaction01.tscn" id="4_krrul"]
 [ext_resource type="PackedScene" uid="uid://ejt2iy3ndq6q" path="res://scenes/obstacleaction02.tscn" id="4_shuqu"]
+[ext_resource type="Script" path="res://scripts/birds.gd" id="7_olte6"]
+[ext_resource type="PackedScene" uid="uid://bkwg68qxp7w3b" path="res://scenes/bird.tscn" id="7_x30yd"]
 
 [sub_resource type="Shader" id="Shader_kau82"]
 code = "
@@ -108,6 +110,12 @@ sky_material = SubResource("ShaderMaterial_7wa01")
 background_mode = 2
 sky = SubResource("Sky_jnnoy")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_l1w30"]
+size = Vector3(6, 5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ic64v"]
+size = Vector3(10, 5, 1)
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_wyd1u")
 
@@ -141,7 +149,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 [node name="ObstacleAction01" parent="Randomizer" instance=ExtResource("4_shuqu")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 9.84)
 
+[node name="ObstacleBirds" type="Node3D" parent="Randomizer"]
+
+[node name="Birds" type="MeshInstance3D" parent="Randomizer/ObstacleBirds" node_paths=PackedStringArray("birds")]
+script = ExtResource("7_olte6")
+birds = [NodePath("BirdHolder1/Bird1"), NodePath("BirdHolder2/Bird2"), NodePath("BirdHolder3/Bird3"), NodePath("BirdHolder4/Bird4"), NodePath("BirdHolder5/Bird5")]
+
+[node name="BirdHolder1" type="Node3D" parent="Randomizer/ObstacleBirds/Birds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20343, 0, 0.662663)
+
+[node name="Bird1" parent="Randomizer/ObstacleBirds/Birds/BirdHolder1" instance=ExtResource("7_x30yd")]
+
+[node name="BirdHolder2" type="Node3D" parent="Randomizer/ObstacleBirds/Birds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.70748, 1.19209e-07, -0.913685)
+
+[node name="Bird2" parent="Randomizer/ObstacleBirds/Birds/BirdHolder2" instance=ExtResource("7_x30yd")]
+
+[node name="BirdHolder3" type="Node3D" parent="Randomizer/ObstacleBirds/Birds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37494, 0, 0.497433)
+
+[node name="Bird3" parent="Randomizer/ObstacleBirds/Birds/BirdHolder3" instance=ExtResource("7_x30yd")]
+
+[node name="BirdHolder4" type="Node3D" parent="Randomizer/ObstacleBirds/Birds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74225, 0, -0.367599)
+
+[node name="Bird4" parent="Randomizer/ObstacleBirds/Birds/BirdHolder4" instance=ExtResource("7_x30yd")]
+
+[node name="BirdHolder5" type="Node3D" parent="Randomizer/ObstacleBirds/Birds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.376, 0, -0.285751)
+
+[node name="Bird5" parent="Randomizer/ObstacleBirds/Birds/BirdHolder5" instance=ExtResource("7_x30yd")]
+
+[node name="CloserArea3D" type="Area3D" parent="Randomizer/ObstacleBirds/Birds"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Randomizer/ObstacleBirds/Birds/CloserArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_l1w30")
+
+[node name="FarArea3D" type="Area3D" parent="Randomizer/ObstacleBirds/Birds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Randomizer/ObstacleBirds/Birds/FarArea3D"]
+shape = SubResource("BoxShape3D_ic64v")
+
 [node name="Player" parent="." instance=ExtResource("2_4guff")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 
+[connection signal="custom_player_run_over_birds" from="Randomizer/ObstacleBirds/Birds" to="." method="_on_birds_custom_player_run_over_birds"]
+[connection signal="body_entered" from="Randomizer/ObstacleBirds/Birds/CloserArea3D" to="Randomizer/ObstacleBirds/Birds" method="_on_closer_area_3d_body_entered"]
+[connection signal="body_entered" from="Randomizer/ObstacleBirds/Birds/FarArea3D" to="Randomizer/ObstacleBirds/Birds" method="_on_far_area_3d_body_entered"]
+[connection signal="custom_player_horn" from="Player" to="." method="_on_player_custom_player_horn"]
 [connection signal="custom_position_reseted" from="Player" to="." method="_on_player_custom_position_reseted"]
