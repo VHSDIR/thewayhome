@@ -1,15 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://uqm4jvaxsodf"]
+[gd_scene load_steps=3 format=3 uid="uid://bq2x7hfdw8xok"]
 
-[ext_resource type="Script" path="res://scripts/win_menu.gd" id="1_pb4mi"]
+[ext_resource type="Script" path="res://scripts/bird_death.gd" id="1_plfwe"]
+[ext_resource type="AudioStream" uid="uid://c3hjwyobr3h60" path="res://assets/creepy bell.mp3" id="2_pk5yb"]
 
-[node name="WinMenu" type="Control"]
+[node name="BirdDeath" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_pb4mi")
+script = ExtResource("1_plfwe")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -31,13 +32,17 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "The Way Home - You finished the game!
-You won!"
+text = "The Way Home - The Bird demon is mad!
+You lose!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Reset" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Reset Game"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_pk5yb")
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]

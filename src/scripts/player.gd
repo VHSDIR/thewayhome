@@ -117,3 +117,5 @@ func _load_win_menu():
 	get_tree().change_scene_to_file("res://scenes/win_menu.tscn")
 func _update_resets_display():
 	$Control/Resets.text = "Resets: %d" % points
+func _on_birds_custom_player_run_over_birds():
+	$Control/Bird.visible = true

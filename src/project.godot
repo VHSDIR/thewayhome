@@ -18,6 +18,10 @@ boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://assets/icon.svg"
 
+[autoload]
+
+TransitionScreen="*res://scenes/transition_screen.tscn"
+
 [display]
 
 window/size/mode=3
