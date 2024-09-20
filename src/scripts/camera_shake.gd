@@ -15,6 +15,7 @@ func _process(_delta: float):
 			randf_range(-actual_intensity, actual_intensity) * 0.05,
 			randf_range(-actual_intensity, actual_intensity) * 0.05
 		)
+		
 	else:
 		position = original_position
 		rotation = original_rotation
