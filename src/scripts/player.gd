@@ -6,6 +6,7 @@ const REVERSE_SPEED = -5.0
 const ACCELERATION = 2.0
 const COAST_DECELERATION = 4.0
 const ROTATION_SPEED = 2.0
+const MOUSE_SENSITIVITY = 0.005  # Adjust for fine-tuning
 const LOOPING_DISTANCE = 100
 const SIDEROAD_START_X = 2
 const SIDEROAD_MAX_X = 4
@@ -15,6 +16,7 @@ signal custom_position_reseted
 signal custom_player_horn
 @export var camera_node: Node3D
 @export var horn_player: AudioStreamPlayer
+
 func _ready():
 	$Control/SpeedMeter.visible = true
 	$Control/FPS.visible = true
@@ -23,8 +25,10 @@ func _ready():
 	$Control/Resets.visible = true
 	_update_resets_display()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
 func _on_continue_pressed():
 	restore_ui_elements()
+
 func toggle_pause_menu():
 	if $Control/PauseMenu.visible:
 		$Control/PauseMenu.visible = false
@@ -36,22 +40,30 @@ func toggle_pause_menu():
 		Engine.time_scale = 0
 		hide_ui_elements()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 func hide_ui_elements():
 	$Control/SpeedMeter.visible = false
 	$Control/FPS.visible = false
 	$Control/Position.visible = false
 	$Control/Resets.visible = false
+
 func restore_ui_elements():
 	$Control/SpeedMeter.visible = true
 	$Control/FPS.visible = true
 	$Control/Position.visible = true
 	$Control/Resets.visible = true
+
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		toggle_pause_menu()
 	if Input.is_action_just_pressed("horn_pressed"):
 		$HornPlayer.play()
 		custom_player_horn.emit()
+	# Capture mouse movement for horizontal rotation
+	var mouse_movement = Input.get_last_mouse_velocity()
+	var horizontal_rotation = -mouse_movement.x * MOUSE_SENSITIVITY / 45
+	rotate_y(horizontal_rotation)
+
 func _physics_process(delta):
 	if PREVIOUS_POSITION == null:
 		PREVIOUS_POSITION = global_position
@@ -107,15 +119,20 @@ func _physics_process(delta):
 	move_and_slide()
 	global_position.x = clamp(global_position.x, -SIDEROAD_MAX_X, SIDEROAD_MAX_X)
 	global_position.y = 1.25
+
 func _increase_points():
 	points += 1
 	_update_resets_display()
 	if points >= 3:
 		_load_win_menu()
+
 func _load_win_menu():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().change_scene_to_file("res://scenes/win_menu.tscn")
+
 func _update_resets_display():
 	$Control/Resets.text = "Resets: %d" % points
+
 func _on_birds_custom_player_run_over_birds():
 	$Control/Bird.visible = true
+	

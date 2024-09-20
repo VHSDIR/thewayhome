@@ -1,11 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvblc8w4k7bli"]
+[gd_scene load_steps=3 format=3 uid="uid://dvblc8w4k7bli"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_yb3vf"]
-[ext_resource type="Shader" path="res://assets/main_menu.gdshader" id="2_68p74"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pfota"]
-shader = ExtResource("2_68p74")
-shader_parameter/amount = null
+[ext_resource type="Theme" uid="uid://dhi8sj1f6nnbs" path="res://assets/theme.tres" id="3_etyqx"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -17,15 +13,14 @@ grow_vertical = 2
 script = ExtResource("1_yb3vf")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_pfota")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -648.0
-offset_top = -387.0
-offset_right = 1588.0
-offset_bottom = 959.0
+offset_left = -2254.0
+offset_top = -1584.0
+offset_right = 2668.0
+offset_bottom = 1512.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -49,13 +44,21 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_etyqx")
 theme_override_font_sizes/font_size = 30
-text = "Are you sure?"
+text = "Are  you  sure?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Go To Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_etyqx")
+text = "Go  To  Menu"
+
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_etyqx")
 text = "Exit"
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Go To Menu" to="." method="_on_go_to_menu_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

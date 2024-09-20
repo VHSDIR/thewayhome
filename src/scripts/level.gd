@@ -27,4 +27,5 @@ func reset_obstacles():
 func _on_player_custom_player_horn():
 	$Randomizer/ObstacleBirds/Birds.scare_birds_if_player_is_close_enought()
 func _on_birds_custom_player_run_over_birds():
-	get_tree().change_scene_to_file("res://scenes/bird_death.tscn")
+	Jumpscare._jumpscare()
+#	get_tree().change_scene_to_file("res://scenes/bird_menu.tscn")
