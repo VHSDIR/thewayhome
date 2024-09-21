@@ -6,7 +6,9 @@ const REVERSE_SPEED = -5.0
 const ACCELERATION = 2.0
 const COAST_DECELERATION = 4.0
 const ROTATION_SPEED = 2.0
-const MOUSE_SENSITIVITY = 0.0001
+const MOUSE_SENSITIVITY = 0.05
+const MOUSE_VERTICAL_RENGE = 30
+const MOUSE_HORIZONTAL_RANGE = 90
 const LOOPING_DISTANCE = 100
 const SIDEROAD_START_X = 2
 const SIDEROAD_MAX_X = 4
@@ -14,8 +16,9 @@ var PREVIOUS_POSITION: Vector3
 var points = 0
 signal custom_position_reseted
 signal custom_player_horn
-@export var camera_node: Node3D
-@export var horn_player: AudioStreamPlayer
+@onready var refCameraRotatorY = $CameraHolder/CameraRotatorY
+@onready var refCameraRotatorX = $CameraHolder/CameraRotatorY/CameraRotatorX
+@onready var refCameraShaker = $CameraHolder/CameraRotatorY/CameraRotatorX/CameraShaker
 func _ready():
 	$Control/SpeedMeter.visible = true
 	$Control/FPS.visible = true
@@ -23,7 +26,7 @@ func _ready():
 	$Control/Position.visible = true
 	$Control/Resets.visible = true
 	_update_resets_display()
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 func _on_continue_pressed():
 	restore_ui_elements()
 func toggle_pause_menu():
@@ -31,7 +34,7 @@ func toggle_pause_menu():
 		$Control/PauseMenu.visible = false
 		Engine.time_scale = 1
 		restore_ui_elements()
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	else:
 		$Control/PauseMenu.visible = true
 		Engine.time_scale = 0
@@ -53,9 +56,9 @@ func _process(_delta):
 	if Input.is_action_just_pressed("horn_pressed"):
 		$HornPlayer.play()
 		custom_player_horn.emit()
-	var mouse_movement = Input.get_last_mouse_velocity()
-	var horizontal_rotation = -mouse_movement.x * MOUSE_SENSITIVITY
-	rotate_y(horizontal_rotation)
+func _input(event):
+	if event is InputEventMouseMotion:
+		_handle_mouse_look(event.relative)
 func _physics_process(delta):
 	if PREVIOUS_POSITION == null:
 		PREVIOUS_POSITION = global_position
@@ -106,11 +109,15 @@ func _physics_process(delta):
 		custom_position_reseted.emit()
 		_increase_points()
 	var currentSpeedFactor = abs(CURRENT_SPEED) / MAX_SPEED
-	var shake_factor = helpers.cast_value_range_to_factor(abs(position.x), SIDEROAD_START_X, SIDEROAD_MAX_X)
-	$Camera3D.set_shake_factor(shake_factor * currentSpeedFactor)
+	var shake_factor = helpers.cast_value_range_to_factor(
+		abs(position.x),
+		SIDEROAD_START_X,
+		SIDEROAD_MAX_X,
+	)
+	refCameraShaker.set_shake_factor(shake_factor * currentSpeedFactor)
 	move_and_slide()
-	global_position.x = clamp(global_position.x, -SIDEROAD_MAX_X, SIDEROAD_MAX_X)
-	global_position.y = 1.25
+	# global_position.x = clamp(global_position.x, -SIDEROAD_MAX_X, SIDEROAD_MAX_X)
+	global_position.y = 0
 func _increase_points():
 	points += 1
 	_update_resets_display()
@@ -123,4 +130,20 @@ func _update_resets_display():
 	$Control/Resets.text = "Resets: %d" % points
 func _on_birds_custom_player_run_over_birds():
 	$Control/Bird.visible = true
+func _handle_mouse_look(mouse_delta: Vector2):
+	# Rotate the player horizontally (yaw)
+	var yaw_rotation = -mouse_delta.x * MOUSE_SENSITIVITY
+	refCameraRotatorY.rotate_y(deg_to_rad(yaw_rotation))
+
+	# Rotate the camera vertically (pitch)
+	var pitch_rotation = -mouse_delta.y * MOUSE_SENSITIVITY
+	refCameraRotatorX.rotate_x(deg_to_rad(pitch_rotation))
+
+	# Clamp the vertical rotation to prevent flipping
+	var camera_rotation_x = refCameraRotatorX.rotation_degrees
+	camera_rotation_x.x = clamp(camera_rotation_x.x, -MOUSE_VERTICAL_RENGE, MOUSE_VERTICAL_RENGE)
+	refCameraRotatorX.rotation_degrees = camera_rotation_x
 	
+	var camera_rotation_y = refCameraRotatorY.rotation_degrees
+	camera_rotation_y.x = clamp(camera_rotation_y.x, -MOUSE_HORIZONTAL_RANGE, MOUSE_HORIZONTAL_RANGE)
+	refCameraRotatorY.rotation_degrees = camera_rotation_y

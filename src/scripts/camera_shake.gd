@@ -1,4 +1,4 @@
-extends Camera3D
+extends Node3D
 var shake_factor: float = 0.0
 var max_shake_intensity: float = 0.1
 var shake_decay: float = 0.1

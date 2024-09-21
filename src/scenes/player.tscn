@@ -10,22 +10,39 @@
 [ext_resource type="AudioStream" uid="uid://c3hjwyobr3h60" path="res://assets/creepy bell.mp3" id="8_754ei"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kfv1j"]
+size = Vector3(3, 3, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_6o8o6"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_cm6tq")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 7.6194e-09, -8.70901e-08, 0, 0.996195, 0.0871558, 8.74228e-08, 0.0871558, -0.996195, 0, 0, 0)
-current = true
+[node name="CameraHolder" type="Node3D" parent="."]
+transform = Transform3D(-1, 7.6194e-09, -8.70901e-08, 0, 0.996195, 0.0871558, 8.74228e-08, 0.0871558, -0.996195, 0.75, 2.2, -0.35)
+
+[node name="CameraRotatorY" type="Node3D" parent="CameraHolder"]
+
+[node name="CameraRotatorX" type="Node3D" parent="CameraHolder/CameraRotatorY"]
+transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
+
+[node name="CameraShaker" type="Node3D" parent="CameraHolder/CameraRotatorY/CameraRotatorX"]
+transform = Transform3D(1, 1.77636e-15, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0.063, -0.7)
 script = ExtResource("2_ue7l3")
 
+[node name="Camera3D" type="Camera3D" parent="CameraHolder/CameraRotatorY/CameraRotatorX/CameraShaker"]
+transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
+current = true
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0.575)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -4)
 shape = SubResource("BoxShape3D_kfv1j")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshPodwozie" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 2, 0, 0, 0, 10, 0, 0.5, -4)
+mesh = SubResource("BoxMesh_6o8o6")
+
+[node name="MeshDach" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 3, -4)
 mesh = SubResource("BoxMesh_6o8o6")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
@@ -88,14 +105,14 @@ offset_bottom = -23.0
 theme_override_font_sizes/font_size = 30
 text = "Resets: 0"
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Jumpscares" type="Node3D" parent="."]
 script = ExtResource("5_e2m8a")
 
-[node name="Bird" type="Sprite2D" parent="Node3D"]
+[node name="Bird" type="Sprite2D" parent="Jumpscares"]
 visible = false
 position = Vector2(907, 474.5)
 scale = Vector2(10.6392, 7.57924)
 texture = ExtResource("7_glgb8")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Node3D"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Jumpscares"]
 stream = ExtResource("8_754ei")
