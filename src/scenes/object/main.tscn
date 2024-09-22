@@ -1,0 +1,201 @@
+[gd_scene load_steps=16 format=3 uid="uid://0fje57i0c0sj"]
+
+[ext_resource type="Script" path="res://scripts/object/level.gd" id="1_u52hh"]
+[ext_resource type="PackedScene" uid="uid://d2754k6brsb7x" path="res://scenes/object/terrain.tscn" id="2_vt63v"]
+[ext_resource type="PackedScene" uid="uid://b83dcv6fewvk8" path="res://scenes/object/start_sign.tscn" id="3_fhli1"]
+[ext_resource type="PackedScene" uid="uid://bbkg7ulps68cf" path="res://scenes/object/obstacleaction01.tscn" id="4_wooq6"]
+[ext_resource type="PackedScene" uid="uid://d26te0gv7khjd" path="res://scenes/object/block.tscn" id="5_ebb2d"]
+[ext_resource type="PackedScene" uid="uid://ejt2iy3ndq6q" path="res://scenes/object/obstacleaction02.tscn" id="6_skth3"]
+[ext_resource type="Script" path="res://scripts/object/birds.gd" id="7_r8uu6"]
+[ext_resource type="PackedScene" uid="uid://bkwg68qxp7w3b" path="res://scenes/object/bird.tscn" id="8_djq2t"]
+[ext_resource type="PackedScene" uid="uid://cs8f1p76tn61f" path="res://scenes/object/player.tscn" id="9_7kv2t"]
+
+[sub_resource type="Shader" id="Shader_kau82"]
+code = "
+// NOTE: Shader automatically converted from Godot Engine 4.3.stable's ProceduralSkyMaterial.
+
+shader_type sky;
+render_mode use_debanding;
+
+uniform vec4 sky_top_color : source_color = vec4(0.385, 0.454, 0.55, 1.0);
+uniform vec4 sky_horizon_color : source_color = vec4(0.646, 0.656, 0.67, 1.0);
+uniform float sky_curve : hint_range(0, 1) = 0.15;
+uniform float sky_energy = 1.0; // In Lux.
+uniform sampler2D sky_cover : filter_linear, source_color, hint_default_black;
+uniform vec4 sky_cover_modulate : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 ground_bottom_color : source_color = vec4(0.2, 0.169, 0.133, 1.0);
+uniform vec4 ground_horizon_color : source_color = vec4(0.646, 0.656, 0.67, 1.0);
+uniform float ground_curve : hint_range(0, 1) = 0.02;
+uniform float ground_energy = 1.0;
+uniform float sun_angle_max = 30.0;
+uniform float sun_curve : hint_range(0, 1) = 0.15;
+uniform float exposure : hint_range(0, 128) = 1.0;
+
+void sky() {
+	float v_angle = acos(clamp(EYEDIR.y, -1.0, 1.0));
+	float c = (1.0 - v_angle / (PI * 0.5));
+	vec3 sky = mix(sky_horizon_color.rgb, sky_top_color.rgb, clamp(1.0 - pow(1.0 - c, 1.0 / sky_curve), 0.0, 1.0));
+	sky *= sky_energy;
+
+	if (LIGHT0_ENABLED) {
+		float sun_angle = acos(dot(LIGHT0_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT0_SIZE) {
+			sky = LIGHT0_COLOR * LIGHT0_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT0_SIZE) / (sun_angle_max - LIGHT0_SIZE);
+			sky = mix(LIGHT0_COLOR * LIGHT0_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	if (LIGHT1_ENABLED) {
+		float sun_angle = acos(dot(LIGHT1_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT1_SIZE) {
+			sky = LIGHT1_COLOR * LIGHT1_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT1_SIZE) / (sun_angle_max - LIGHT1_SIZE);
+			sky = mix(LIGHT1_COLOR * LIGHT1_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	if (LIGHT2_ENABLED) {
+		float sun_angle = acos(dot(LIGHT2_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT2_SIZE) {
+			sky = LIGHT2_COLOR * LIGHT2_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT2_SIZE) / (sun_angle_max - LIGHT2_SIZE);
+			sky = mix(LIGHT2_COLOR * LIGHT2_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	if (LIGHT3_ENABLED) {
+		float sun_angle = acos(dot(LIGHT3_DIRECTION, EYEDIR));
+		if (sun_angle < LIGHT3_SIZE) {
+			sky = LIGHT3_COLOR * LIGHT3_ENERGY;
+		} else if (sun_angle < sun_angle_max) {
+			float c2 = (sun_angle - LIGHT3_SIZE) / (sun_angle_max - LIGHT3_SIZE);
+			sky = mix(LIGHT3_COLOR * LIGHT3_ENERGY, sky, clamp(1.0 - pow(1.0 - c2, 1.0 / sun_curve), 0.0, 1.0));
+		}
+	}
+
+	vec4 sky_cover_texture = texture(sky_cover, SKY_COORDS);
+	sky += (sky_cover_texture.rgb * sky_cover_modulate.rgb) * sky_cover_texture.a * sky_cover_modulate.a * sky_energy;
+
+	c = (v_angle - (PI * 0.5)) / (PI * 0.5);
+	vec3 ground = mix(ground_horizon_color.rgb, ground_bottom_color.rgb, clamp(1.0 - pow(1.0 - c, 1.0 / ground_curve), 0.0, 1.0));
+	ground *= ground_energy;
+
+	COLOR = mix(ground, sky, step(0.0, EYEDIR.y)) * exposure;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wa01"]
+shader = SubResource("Shader_kau82")
+shader_parameter/sky_top_color = Color(0.00450157, 0.478251, 0.709588, 1)
+shader_parameter/sky_horizon_color = Color(1, 1, 1, 1)
+shader_parameter/sky_curve = 0.15
+shader_parameter/sky_energy = 1.0
+shader_parameter/sky_cover_modulate = Color(1, 1, 1, 1)
+shader_parameter/ground_bottom_color = Color(0.00392157, 0.478431, 0.709804, 1)
+shader_parameter/ground_horizon_color = Color(1, 1, 1, 1)
+shader_parameter/ground_curve = 0.02
+shader_parameter/ground_energy = 1.0
+shader_parameter/sun_angle_max = 0.523599
+shader_parameter/sun_curve = 0.433
+shader_parameter/exposure = 1.0
+
+[sub_resource type="Sky" id="Sky_jnnoy"]
+sky_material = SubResource("ShaderMaterial_7wa01")
+
+[sub_resource type="Environment" id="Environment_ohgsb"]
+background_mode = 2
+sky = SubResource("Sky_jnnoy")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l1w30"]
+size = Vector3(6, 5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ic64v"]
+size = Vector3(10, 5, 1)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_u52hh")
+
+[node name="Enviroment" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 26.4884, 39.4248)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment"]
+environment = SubResource("Environment_ohgsb")
+
+[node name="Terrain" parent="Enviroment" instance=ExtResource("2_vt63v")]
+
+[node name="StartSign" parent="Enviroment" instance=ExtResource("3_fhli1")]
+transform = Transform3D(1, 0, 0, 0, 1.75873, 0, 0, 0, 1, -3.5, 0, 9)
+
+[node name="Randomizer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+
+[node name="ObstacleAction02" parent="Randomizer" instance=ExtResource("4_wooq6")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 10)
+
+[node name="ObstaclesHolder" type="Node3D" parent="Randomizer"]
+
+[node name="Obstacle01" parent="Randomizer/ObstaclesHolder" instance=ExtResource("5_ebb2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="Obstacle02" parent="Randomizer/ObstaclesHolder" instance=ExtResource("5_ebb2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="ObstacleAction01" parent="Randomizer" instance=ExtResource("6_skth3")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 9.84)
+
+[node name="ObstacleBirds" type="Node3D" parent="Randomizer"]
+
+[node name="Birds" type="MeshInstance3D" parent="Randomizer/ObstacleBirds" node_paths=PackedStringArray("birds")]
+script = ExtResource("7_r8uu6")
+birds = [NodePath("BirdHolder1/Bird1"), NodePath("BirdHolder2/Bird2"), NodePath("BirdHolder3/Bird3"), NodePath("BirdHolder4/Bird4"), NodePath("BirdHolder5/Bird5")]
+
+[node name="BirdHolder1" type="Node3D" parent="Randomizer/ObstacleBirds/Birds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20343, 0, 0.662663)
+
+[node name="Bird1" parent="Randomizer/ObstacleBirds/Birds/BirdHolder1" instance=ExtResource("8_djq2t")]
+
+[node name="BirdHolder2" type="Node3D" parent="Randomizer/ObstacleBirds/Birds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.70748, 1.19209e-07, -0.913685)
+
+[node name="Bird2" parent="Randomizer/ObstacleBirds/Birds/BirdHolder2" instance=ExtResource("8_djq2t")]
+
+[node name="BirdHolder3" type="Node3D" parent="Randomizer/ObstacleBirds/Birds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37494, 0, 0.497433)
+
+[node name="Bird3" parent="Randomizer/ObstacleBirds/Birds/BirdHolder3" instance=ExtResource("8_djq2t")]
+
+[node name="BirdHolder4" type="Node3D" parent="Randomizer/ObstacleBirds/Birds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74225, 0, -0.367599)
+
+[node name="Bird4" parent="Randomizer/ObstacleBirds/Birds/BirdHolder4" instance=ExtResource("8_djq2t")]
+
+[node name="BirdHolder5" type="Node3D" parent="Randomizer/ObstacleBirds/Birds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.376, 0, -0.285751)
+
+[node name="Bird5" parent="Randomizer/ObstacleBirds/Birds/BirdHolder5" instance=ExtResource("8_djq2t")]
+
+[node name="CloserArea3D" type="Area3D" parent="Randomizer/ObstacleBirds/Birds"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Randomizer/ObstacleBirds/Birds/CloserArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_l1w30")
+
+[node name="FarArea3D" type="Area3D" parent="Randomizer/ObstacleBirds/Birds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Randomizer/ObstacleBirds/Birds/FarArea3D"]
+shape = SubResource("BoxShape3D_ic64v")
+
+[node name="Player" parent="." instance=ExtResource("9_7kv2t")]
+
+[connection signal="custom_player_run_over_birds" from="Randomizer/ObstacleBirds/Birds" to="." method="_on_birds_custom_player_run_over_birds"]
+[connection signal="body_entered" from="Randomizer/ObstacleBirds/Birds/CloserArea3D" to="Randomizer/ObstacleBirds/Birds" method="_on_closer_area_3d_body_entered"]
+[connection signal="body_entered" from="Randomizer/ObstacleBirds/Birds/FarArea3D" to="Randomizer/ObstacleBirds/Birds" method="_on_far_area_3d_body_entered"]
+[connection signal="custom_player_horn" from="Player" to="." method="_on_player_custom_player_horn"]
+[connection signal="custom_position_reseted" from="Player" to="." method="_on_player_custom_position_reseted"]

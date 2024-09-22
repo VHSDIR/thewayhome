@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://dddktftjb2dnj"]
+
+[ext_resource type="Script" path="res://scripts/menu/settings_menu.gd" id="1_ujpcf"]
+[ext_resource type="Theme" uid="uid://dhi8sj1f6nnbs" path="res://assets/theme/theme.tres" id="2_jpdqh"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ujpcf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1560.0
+offset_top = -1795.0
+offset_right = 2668.0
+offset_bottom = 1512.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = -20.0
+offset_right = 53.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_jpdqh")
+text = "Go Back"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = -62.0
+offset_right = 92.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_jpdqh")
+text = "Window  mode:"
+
+[node name="Fullscreen" type="Button" parent="MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_jpdqh")
+text = "Fullscreen"
+
+[node name="Maximized" type="Button" parent="MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_jpdqh")
+text = "Maximized"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/Maximized" to="." method="_on_maximized_pressed"]
