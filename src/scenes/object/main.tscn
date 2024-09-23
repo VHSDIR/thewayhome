@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/object/level.gd" id="1_u52hh"]
 [ext_resource type="PackedScene" uid="uid://d2754k6brsb7x" path="res://scenes/object/terrain.tscn" id="2_vt63v"]
 [ext_resource type="PackedScene" uid="uid://b83dcv6fewvk8" path="res://scenes/object/start_sign.tscn" id="3_fhli1"]
-[ext_resource type="PackedScene" uid="uid://bbkg7ulps68cf" path="res://scenes/object/obstacleaction01.tscn" id="4_wooq6"]
+[ext_resource type="PackedScene" uid="uid://bbkg7ulps68cf" path="res://scenes/object/sarna.tscn" id="4_wooq6"]
 [ext_resource type="PackedScene" uid="uid://d26te0gv7khjd" path="res://scenes/object/block.tscn" id="5_ebb2d"]
 [ext_resource type="PackedScene" uid="uid://ejt2iy3ndq6q" path="res://scenes/object/obstacleaction02.tscn" id="6_skth3"]
 [ext_resource type="Script" path="res://scripts/object/birds.gd" id="7_r8uu6"]

@@ -1,14 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://ejt2iy3ndq6q"]
+[gd_scene load_steps=4 format=3 uid="uid://bbkg7ulps68cf"]
 
-[ext_resource type="Texture2D" uid="uid://doe83htu4pkqj" path="res://assets/image/gas_station.png" id="1_sfrol"]
-
+[ext_resource type="Texture2D" uid="uid://ceraerrjmmuhk" path="res://assets/image/sarna.jpg" id="1_ly7q4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbp72"]
-albedo_texture = ExtResource("1_sfrol")
+albedo_texture = ExtResource("1_ly7q4")
 
 [sub_resource type="QuadMesh" id="QuadMesh_sbpwy"]
 
-[node name="GasStation" type="Node3D"]
+[node name="Sarna" type="Node3D"]
 transform = Transform3D(-0.8, 0, -1.20797e-07, 0, 0.8, 0, 1.20797e-07, 0, -0.8, 0, 0, 0)
 
 [node name="Sprite" type="MeshInstance3D" parent="."]
