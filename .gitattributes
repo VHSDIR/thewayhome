@@ -1,4 +1,3 @@
-# Ensure text files use LF (Unix) line endings
 *.gd       text eol=lf
 *.tscn     text eol=lf
 *.tres     text eol=lf
@@ -7,8 +6,6 @@
 *.md       text eol=lf
 *.txt      text eol=lf
 *.json     text eol=lf
-
-# For Godot binary files (don't convert line endings)
 *.import   binary
 *.png      binary
 *.jpg      binary
