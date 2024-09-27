@@ -40,7 +40,7 @@ func save():
 	return save_dict
 
 func save_game():
-	var save_game = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	var save_game = FileAccess.open_encrypted_with_pass("user://savegame.save", FileAccess.WRITE, "password")
 	
 	var json_string = JSON.stringify(save())
 	
@@ -50,7 +50,7 @@ func load_game():
 	if not FileAccess.file_exists("user://savegame.save"):
 		return
 		
-	var save_game = FileAccess.open("user://savegame.save", FileAccess.READ)
+	var save_game = FileAccess.open_encrypted_with_pass("user://savegame.save", FileAccess.READ, "password")
 	
 	
 	while save_game.get_position() < save_game.get_length():
