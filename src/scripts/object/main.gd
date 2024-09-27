@@ -5,6 +5,7 @@ var NUM_OF_OBSTACLES
 var OBSTACLES
 var OBSTALES_RANGE = 5
 func _ready():
+	save_game()
 	NUM_OF_OBSTACLES = $Randomizer.get_child_count()
 	OBSTACLES = $Randomizer.get_children()
 	reset_obstacles()
@@ -28,3 +29,34 @@ func _on_player_custom_player_horn():
 	$Randomizer/ObstacleBirds/Birds.scare_birds_if_player_is_close_enought()
 func _on_birds_custom_player_run_over_birds():
 	jumpscare._jumpscare()
+func save():
+	var save_dict = {
+		
+		"score" : 0,
+		"username" : "piotr",
+		"position" : Vector3(0,0,0)
+	
+	}
+	return save_dict
+
+func save_game():
+	var save_game = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	
+	var json_string = JSON.stringify(save())
+	
+	save_game.store_line(json_string)
+
+func load_game():
+	if not FileAccess.file_exists("user://savegame.save"):
+		return
+		
+	var save_game = FileAccess.open("user://savegame.save", FileAccess.READ)
+	
+	
+	while save_game.get_position() < save_game.get_length():
+		var json_string = save_game.get_line()
+		var json = JSON.new()
+		var parse_result = json.parse(json_string)
+		var node_data = json.get_data()
+		
+		print(node_data)
