@@ -7,7 +7,7 @@ albedo_texture = ExtResource("1_ir8ay")
 
 [sub_resource type="QuadMesh" id="QuadMesh_sbpwy"]
 
-[node name="GasStation" type="Node3D"]
+[node name="Przystanek" type="Node3D"]
 transform = Transform3D(-0.8, 0, -1.20797e-07, 0, 0.8, 0, 1.20797e-07, 0, -0.8, 0, 0, 0)
 
 [node name="Sprite" type="MeshInstance3D" parent="."]

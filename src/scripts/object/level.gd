@@ -14,12 +14,12 @@ func _on_player_custom_position_reseted():
 func reset_obstacles():
 	var picked_obstacle = randomNumberGenerator.randi_range(0, NUM_OF_OBSTACLES - 1)
 	if picked_obstacle == 0:
-		$Randomizer/ObstacleAction02.position.x = helpers.random_range(OBSTALES_RANGE)
+		$Randomizer/Przystanek.position.x = helpers.random_range(OBSTALES_RANGE)
 	elif picked_obstacle == 1:
 		$Randomizer/ObstaclesHolder/Obstacle01.position.x = helpers.random_range(OBSTALES_RANGE)
 		$Randomizer/ObstaclesHolder/Obstacle02.position.x = helpers.random_range(OBSTALES_RANGE)
 	elif picked_obstacle == 2:
-		$Randomizer/ObstacleAction01.position.x = helpers.random_range(OBSTALES_RANGE)
+		$Randomizer/Sarna.position.x = helpers.random_range(OBSTALES_RANGE)
 	elif picked_obstacle == 3:
 		$Randomizer/ObstacleBirds/Birds.resetAfterLevelReset()
 	for i in range(NUM_OF_OBSTACLES):
