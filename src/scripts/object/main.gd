@@ -5,7 +5,7 @@ var NUM_OF_OBSTACLES
 var OBSTACLES
 var OBSTALES_RANGE = 5
 func _ready():
-	save_game()
+	load_game()
 	NUM_OF_OBSTACLES = $Randomizer.get_child_count()
 	OBSTACLES = $Randomizer.get_children()
 	reset_obstacles()
@@ -32,7 +32,7 @@ func _on_birds_custom_player_run_over_birds():
 func save():
 	var save_dict = {
 		"resets" : 0,
-		"position" : Vector3(0,0,0)
+		"position" : $Player.position#Vector3(0,0,0)
 	}
 	return save_dict
 func save_game():

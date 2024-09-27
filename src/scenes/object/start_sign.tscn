@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b83dcv6fewvk8"]
 
-[ext_resource type="Material" uid="uid://bojh8008x327y" path="res://assets/material/start-sign-material.tres" id="1_y7ona"]
+[ext_resource type="Material" uid="uid://bojh8008x327y" path="res://assets/resource/start-sign-material.tres" id="1_y7ona"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_qlryk"]
 

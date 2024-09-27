@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://uqm4jvaxsodf"]
 
 [ext_resource type="Script" path="res://scripts/menu/win_menu.gd" id="1_617cr"]
-[ext_resource type="Theme" uid="uid://dhi8sj1f6nnbs" path="res://assets/theme/theme.tres" id="2_w4847"]
+[ext_resource type="Theme" uid="uid://dhi8sj1f6nnbs" path="res://assets/resource/theme.tres" id="2_w4847"]
 
 [node name="WinMenu" type="Control"]
 layout_mode = 3
