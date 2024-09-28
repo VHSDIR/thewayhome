@@ -15,7 +15,7 @@ const SIDEROAD_START_X = 2
 const SIDEROAD_MAX_X = 4
 var PREVIOUS_POSITION: Vector3
 var points = 0
-var is_teleporting = false  # Flag to track teleportation
+var is_teleporting = false
 signal custom_position_reseted
 signal custom_player_horn
 @onready var refCameraRotatorY = $CameraHolder/CameraRotatorY
