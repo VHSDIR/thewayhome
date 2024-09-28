@@ -1,5 +1,6 @@
 extends CharacterBody3D
-var helpers = preload("res://scripts/object/helpers.gd")
+
+var other = preload("res://scripts/object/other.gd")
 var CURRENT_SPEED = 0
 const MAX_SPEED = 10.0
 const REVERSE_SPEED = -5.0
@@ -14,6 +15,7 @@ const SIDEROAD_START_X = 2
 const SIDEROAD_MAX_X = 4
 var PREVIOUS_POSITION: Vector3
 var points = 0
+var is_teleporting = false  # Flag to track teleportation
 signal custom_position_reseted
 signal custom_player_horn
 @onready var refCameraRotatorY = $CameraHolder/CameraRotatorY
@@ -92,17 +94,20 @@ func _physics_process(delta):
 			else:
 				rotate_y(rotation_amount)
 	var distance = position.distance_to(PREVIOUS_POSITION)
-	var speed = distance / delta
+	if not is_teleporting:
+		var speed = distance / delta
+		$Control/SpeedMeter.text = other.float_to_speed(speed)
+		$Control/SpeedMeter.modulate = other.get_speed_color(CURRENT_SPEED, MAX_SPEED)
+	is_teleporting = false
 	PREVIOUS_POSITION = position
-	$Control/SpeedMeter.text = helpers.float_to_speed(speed)
-	$Control/SpeedMeter.modulate = helpers.get_speed_color(CURRENT_SPEED, MAX_SPEED)
 	_update_debug_label()
 	if position.z > LOOPING_DISTANCE:
 		position.z = -LOOPING_DISTANCE
 		custom_position_reseted.emit()
 		_increase_points()
+		is_teleporting = true
 	var currentSpeedFactor = abs(CURRENT_SPEED) / MAX_SPEED
-	var shake_factor = helpers.cast_value_range_to_factor(
+	var shake_factor = other.cast_value_range_to_factor(
 		abs(position.x),
 		SIDEROAD_START_X,
 		SIDEROAD_MAX_X,

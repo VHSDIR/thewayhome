@@ -16,14 +16,17 @@ run/main_scene="res://scenes/menu/main_menu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="TheWayHome"
 config/features=PackedStringArray("4.3", "Forward Plus")
+run/max_fps=360
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://assets/image/icon.svg"
+config/macos_native_icon="res://assets/image/icon.svg"
+config/windows_native_icon="res://assets/image/icon.svg"
 
 [autoload]
 
 transition_screen="*res://scenes/object/transition_screen.tscn"
-jumpscare="*res://scripts/object/jumpscare.gd"
+audio="*res://scenes/object/audio_stream_player.tscn"
 
 [display]
 
@@ -69,3 +72,7 @@ horn_pressed={
 [physics]
 
 3d/default_gravity=10.0
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

@@ -1,5 +1,5 @@
 extends Node
-var helpers = preload("res://scripts/object/helpers.gd")
+var other = preload("res://scripts/object/other.gd")
 signal custom_player_run_over_birds;
 @export var birds: Array[Node3D] = []
 var areBirdsOnScaredAway = false;
@@ -25,7 +25,7 @@ func resetAfterLevelReset():
 		if bird:
 			bird.position = Vector3.ZERO;
 	for i in range(birds.size()):
-		birdsDirections[i] = helpers.random_range(1);
+		birdsDirections[i] = other.random_range(1);
 	areBirdsOnScaredAway = false;
 	hasPlayerInRange = false;
 func _on_closer_area_3d_body_entered(body):
