@@ -32,7 +32,7 @@ func _on_birds_custom_player_run_over_birds():
 func save():
 	var save_dict = {
 		"resets" : 0,
-		"position" : $Player.position#Vector3(0,0,0)
+		"position" : $Player.position
 	}
 	return save_dict
 func save_game():
