@@ -24,7 +24,6 @@ config/icon="res://assets/image/icon.svg"
 
 transition_screen="*res://scenes/object/transition_screen.tscn"
 jumpscare="*res://scripts/object/jumpscare.gd"
-Main="*res://scripts/object/main.gd"
 
 [display]
 
