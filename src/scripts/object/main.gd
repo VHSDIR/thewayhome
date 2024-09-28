@@ -24,7 +24,13 @@ func reset_obstacles():
 	elif picked_obstacle == 3:
 		$Randomizer/ObstacleBirds/Birds.resetAfterLevelReset()
 	for i in range(NUM_OF_OBSTACLES):
-		OBSTACLES[i].scale = Vector3.ONE if i == picked_obstacle else Vector3.ZERO
+		var obstacle = OBSTACLES[i]
+		if i == picked_obstacle:
+			obstacle.position.y = 0;
+			obstacle.scale = Vector3.ONE
+		else:
+			obstacle.scale = Vector3.ZERO
+			obstacle.position.y = -100;
 func _on_player_custom_player_horn():
 	$Randomizer/ObstacleBirds/Birds.scare_birds_if_player_is_close_enought()
 func _on_birds_custom_player_run_over_birds():
