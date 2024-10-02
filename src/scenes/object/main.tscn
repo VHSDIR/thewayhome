@@ -200,4 +200,5 @@ shape = SubResource("BoxShape3D_ic64v")
 [connection signal="body_entered" from="Randomizer/ObstacleBirds/Birds/CloserArea3D" to="Randomizer/ObstacleBirds/Birds" method="_on_closer_area_3d_body_entered"]
 [connection signal="body_entered" from="Randomizer/ObstacleBirds/Birds/FarArea3D" to="Randomizer/ObstacleBirds/Birds" method="_on_far_area_3d_body_entered"]
 [connection signal="custom_player_horn" from="Player/Player" to="." method="_on_player_custom_player_horn"]
+[connection signal="custom_player_stop" from="Player/Player" to="." method="_on_player_custom_player_stop"]
 [connection signal="custom_position_reseted" from="Player/Player" to="." method="_on_player_custom_position_reseted"]

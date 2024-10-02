@@ -10,3 +10,24 @@ static func random_range(rangeValue: float) -> float:
 static func cast_value_range_to_factor(value: float, valueMin: float, valueMax: float) -> float:
 	var diff = valueMax - valueMin;
 	return clamp((value - valueMin) / diff, 0, 1);
+static func calculate_speed(
+	currentSpeed: float,
+	isAcceleratePressed: bool,
+	isBrakePressed: bool,
+	accelerationFactor: float,
+	deccelerationFactor: float,
+	deltaTime: float,
+	maxSpeed: float,
+	maxReverseSpeed: float
+) -> float:
+	var speed = 0
+	if isAcceleratePressed:
+		speed = currentSpeed + accelerationFactor * deltaTime
+	elif isBrakePressed:
+		speed = currentSpeed - accelerationFactor * deltaTime
+	else:
+		if currentSpeed > 0:
+			speed = currentSpeed - deccelerationFactor * deltaTime
+		elif currentSpeed < 0:
+			speed = currentSpeed + deccelerationFactor * deltaTime
+	return clamp(speed, maxReverseSpeed, maxSpeed)

@@ -18,6 +18,7 @@ var points = 0
 var is_teleporting = false
 signal custom_position_reseted
 signal custom_player_horn
+signal custom_player_stop
 @onready var refCameraRotatorY = $CameraHolder/CameraRotatorY
 @onready var refCameraRotatorX = $CameraHolder/CameraRotatorY/CameraRotatorX
 @onready var refCameraShaker = $CameraHolder/CameraRotatorY/CameraRotatorX/CameraShaker
@@ -63,33 +64,35 @@ func _physics_process(delta):
 		velocity += get_gravity() * delta
 	var isAcceleratePressed = Input.is_action_pressed("move_front")
 	var isBrakePressed = Input.is_action_pressed("move_back")
-	if isAcceleratePressed:
-		CURRENT_SPEED += ACCELERATION * delta
-	elif isBrakePressed:
-		CURRENT_SPEED -= ACCELERATION * delta
-	else:
-		if CURRENT_SPEED > 0:
-			CURRENT_SPEED -= COAST_DECELERATION * delta
-		elif CURRENT_SPEED < 0:
-			CURRENT_SPEED += COAST_DECELERATION * delta
-	CURRENT_SPEED = clamp(CURRENT_SPEED, REVERSE_SPEED, MAX_SPEED)
+
+	var newSpeed = other.calculate_speed(
+		CURRENT_SPEED, # currentSpeed
+		isAcceleratePressed, # isAcceleratePressed
+		isBrakePressed, # isBrakePressed
+		ACCELERATION, # accelerationFactor
+		COAST_DECELERATION, # deccelerationFactor
+		delta, # deltaTime
+		MAX_SPEED, # maxSpeed
+		REVERSE_SPEED # maxReverseSpeed
+	);
+
 	var input_dir = Input.get_vector("rotate_left", "rotate_right", "move_back", "move_front")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, 1)).normalized()
 	if direction:
-		velocity.x = CURRENT_SPEED * direction.x
-		velocity.z = CURRENT_SPEED * direction.z
+		velocity.x = newSpeed * direction.x
+		velocity.z = newSpeed * direction.z
 	else:
-		velocity.x = move_toward(velocity.x, 0, abs(CURRENT_SPEED))
-		velocity.z = move_toward(velocity.z, 0, abs(CURRENT_SPEED))
-	if CURRENT_SPEED != 0:
-		var rotation_amount = ROTATION_SPEED * delta * (abs(CURRENT_SPEED) / MAX_SPEED)
+		velocity.x = move_toward(velocity.x, 0, abs(newSpeed))
+		velocity.z = move_toward(velocity.z, 0, abs(newSpeed))
+	if newSpeed != 0:
+		var rotation_amount = ROTATION_SPEED * delta * (abs(newSpeed) / MAX_SPEED)
 		if Input.is_action_pressed("rotate_left"):
-			if CURRENT_SPEED > 0:
+			if newSpeed > 0:
 				rotate_y(rotation_amount)
 			else:
 				rotate_y(-rotation_amount)
 		elif Input.is_action_pressed("rotate_right"):
-			if CURRENT_SPEED > 0:
+			if newSpeed > 0:
 				rotate_y(-rotation_amount)
 			else:
 				rotate_y(rotation_amount)
@@ -97,7 +100,7 @@ func _physics_process(delta):
 	if not is_teleporting:
 		var speed = distance / delta
 		$Control/SpeedMeter.text = other.float_to_speed(speed)
-		$Control/SpeedMeter.modulate = other.get_speed_color(CURRENT_SPEED, MAX_SPEED)
+		$Control/SpeedMeter.modulate = other.get_speed_color(newSpeed, MAX_SPEED)
 	is_teleporting = false
 	PREVIOUS_POSITION = position
 	_update_debug_label()
@@ -106,7 +109,7 @@ func _physics_process(delta):
 		custom_position_reseted.emit()
 		_increase_points()
 		is_teleporting = true
-	var currentSpeedFactor = abs(CURRENT_SPEED) / MAX_SPEED
+	var currentSpeedFactor = abs(newSpeed) / MAX_SPEED
 	var shake_factor = other.cast_value_range_to_factor(
 		abs(position.x),
 		SIDEROAD_START_X,
@@ -115,6 +118,11 @@ func _physics_process(delta):
 	refCameraShaker.set_shake_factor(shake_factor * currentSpeedFactor)
 	move_and_slide()
 	global_position.y = 0
+
+	if newSpeed == 0 && CURRENT_SPEED > 0:
+		custom_player_stop.emit()
+
+	CURRENT_SPEED = newSpeed
 func _increase_points():
 	points += 1
 	_update_debug_label()

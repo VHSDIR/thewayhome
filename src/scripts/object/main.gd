@@ -8,8 +8,8 @@ func _ready():
 	NUM_OF_OBSTACLES = $Randomizer.get_child_count()
 	OBSTACLES = $Randomizer.get_children()
 	reset_obstacles()
-func _on_player_custom_position_reset():
-	$Enviroment/StartSign.scale = Vector3.ZERO
+func _on_player_custom_position_reseted():
+	$Level/StartSign.scale = Vector3.ZERO
 	reset_obstacles()
 func reset_obstacles():
 	var picked_obstacle = randomNumberGenerator.randi_range(0, NUM_OF_OBSTACLES - 1)
@@ -34,3 +34,5 @@ func _on_player_custom_player_horn():
 	$Randomizer/ObstacleBirds/Birds.scare_birds_if_player_is_close_enought()
 func _on_birds_custom_player_run_over_birds():
 	get_tree().change_scene_to_file("res://scenes/menu/bird_menu.tscn")
+func _on_player_custom_player_stop():
+	$Randomizer/Przystanek.notify_that_bus_has_stoped();
