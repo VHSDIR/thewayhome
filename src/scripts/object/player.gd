@@ -1,5 +1,4 @@
 extends CharacterBody3D
-
 var other = preload("res://scripts/object/other.gd")
 var CURRENT_SPEED = 0
 const MAX_SPEED = 10.0
@@ -64,18 +63,16 @@ func _physics_process(delta):
 		velocity += get_gravity() * delta
 	var isAcceleratePressed = Input.is_action_pressed("move_front")
 	var isBrakePressed = Input.is_action_pressed("move_back")
-
 	var newSpeed = other.calculate_speed(
-		CURRENT_SPEED, # currentSpeed
-		isAcceleratePressed, # isAcceleratePressed
-		isBrakePressed, # isBrakePressed
-		ACCELERATION, # accelerationFactor
-		COAST_DECELERATION, # deccelerationFactor
-		delta, # deltaTime
-		MAX_SPEED, # maxSpeed
-		REVERSE_SPEED # maxReverseSpeed
+		CURRENT_SPEED,
+		isAcceleratePressed,
+		isBrakePressed,
+		ACCELERATION,
+		COAST_DECELERATION,
+		delta,
+		MAX_SPEED,
+		REVERSE_SPEED
 	);
-
 	var input_dir = Input.get_vector("rotate_left", "rotate_right", "move_back", "move_front")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, 1)).normalized()
 	if direction:
@@ -118,10 +115,8 @@ func _physics_process(delta):
 	refCameraShaker.set_shake_factor(shake_factor * currentSpeedFactor)
 	move_and_slide()
 	global_position.y = 0
-
 	if newSpeed == 0 && CURRENT_SPEED > 0:
 		custom_player_stop.emit()
-
 	CURRENT_SPEED = newSpeed
 func _increase_points():
 	points += 1
@@ -137,6 +132,8 @@ func _update_debug_label():
 func _on_birds_custom_player_run_over_birds():
 	$Control/Bird.visible = true
 func _handle_mouse_look(mouse_delta: Vector2):
+	if Engine.time_scale == 0:
+		return
 	var yaw_rotation = -mouse_delta.x * MOUSE_SENSITIVITY
 	refCameraRotatorY.rotate_y(deg_to_rad(yaw_rotation))
 	var pitch_rotation = -mouse_delta.y * MOUSE_SENSITIVITY

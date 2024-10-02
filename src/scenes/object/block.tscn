@@ -2,7 +2,6 @@
 
 [ext_resource type="Material" uid="uid://beeuqh7sycb6h" path="res://assets/resource/material.tres" id="1_yac7a"]
 
-
 [sub_resource type="BoxMesh" id="BoxMesh_5x3jh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8ngm5"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dss6abo34qkep"]
+
+[ext_resource type="Shader" path="res://assets/resource/blur.gdshader" id="1_jpo7p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e5iaf"]
+shader = ExtResource("1_jpo7p")
+shader_parameter/blur_radius = 5.0
+
+[node name="BlurMaterial" type="ColorRect"]
+material = SubResource("ShaderMaterial_e5iaf")
+offset_left = -22716.0
+offset_top = -19851.0
+offset_right = 30493.0
+offset_bottom = 12679.0

@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bq2x7hfdw8xok"]
+[gd_scene load_steps=3 format=3 uid="uid://bq2x7hfdw8xok"]
 
 [ext_resource type="Script" path="res://scripts/menu/bird_menu.gd" id="1_40cls"]
 [ext_resource type="Theme" uid="uid://dhi8sj1f6nnbs" path="res://assets/resource/theme.tres" id="2_rgktd"]
-[ext_resource type="AudioStream" uid="uid://c3hjwyobr3h60" path="res://assets/music/creepy bell.mp3" id="3_k2hqh"]
 
 [node name="BirdDeath" type="Control"]
 layout_mode = 3
@@ -43,9 +42,5 @@ vertical_alignment = 1
 layout_mode = 2
 theme = ExtResource("2_rgktd")
 text = "Reset Game"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_k2hqh")
-autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]

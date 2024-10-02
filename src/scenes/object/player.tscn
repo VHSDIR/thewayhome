@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cs8f1p76tn61f"]
+[gd_scene load_steps=7 format=3 uid="uid://cs8f1p76tn61f"]
 
 [ext_resource type="Script" path="res://scripts/object/player.gd" id="1_cm6tq"]
 [ext_resource type="PackedScene" uid="uid://dvblc8w4k7bli" path="res://scenes/menu/pause_menu.tscn" id="2_mriif"]
 [ext_resource type="Script" path="res://scripts/object/camera_shake.gd" id="2_ue7l3"]
-[ext_resource type="AudioStream" uid="uid://cxk11bqqo030q" path="res://assets/music/desert.mp3" id="4_osacv"]
 [ext_resource type="AudioStream" uid="uid://bqsyvtn2ojxay" path="res://assets/music/horn.mp3" id="5_8kamj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kfv1j"]
@@ -27,7 +26,7 @@ transform = Transform3D(1, 1.77636e-15, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1
 script = ExtResource("2_ue7l3")
 
 [node name="Camera3D" type="Camera3D" parent="CameraHolder/CameraRotatorY/CameraRotatorX/CameraShaker"]
-transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
+transform = Transform3D(1, -5.32907e-15, 4.26326e-14, 8.88178e-16, 1, 1.49012e-08, 2.13163e-14, -7.45058e-09, 1, 5.96046e-08, 0, -5.96046e-08)
 current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -41,11 +40,6 @@ mesh = SubResource("BoxMesh_6o8o6")
 [node name="MeshDach" type="MeshInstance3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 3, -4)
 mesh = SubResource("BoxMesh_6o8o6")
-
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_osacv")
-volume_db = -5.0
-autoplay = true
 
 [node name="HornPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_8kamj")

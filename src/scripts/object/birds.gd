@@ -17,7 +17,7 @@ func _process(delta):
 				bird.position.y + delta,
 				bird.position.z
 			)
-func scare_birds_if_player_is_close_enought():
+func scare_birds_if_player_is_close_enough():
 	if hasPlayerInRange:
 		areBirdsOnScaredAway = true;
 func resetAfterLevelReset():
