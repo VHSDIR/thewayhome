@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://1n2vqepjvvrm"]
+[gd_scene load_steps=6 format=3 uid="uid://1n2vqepjvvrm"]
 
 [ext_resource type="Material" uid="uid://dy00hb6d160wm" path="res://assets/busstop/busstop.tres" id="1_6ohwb"]
-[ext_resource type="Script" path="res://scripts/object/przystanek.gd" id="1_ari60"]
 [ext_resource type="Material" uid="uid://cxnk8bgm78ulg" path="res://assets/busstop/passanger-man.tres" id="2_0cf0a"]
 [ext_resource type="Material" uid="uid://bbmktk66whbp0" path="res://assets/busstop/passanger-wampire.tres" id="3_87wc6"]
 
@@ -11,7 +10,6 @@
 
 [node name="Przystanek" type="Node3D"]
 transform = Transform3D(-0.8, 0, -1.20797e-07, 0, 0.8, 0, 1.20797e-07, 0, -0.8, 0, 0, 0)
-script = ExtResource("1_ari60")
 
 [node name="busstop" type="MeshInstance3D" parent="."]
 transform = Transform3D(-3, 0, -4.52987e-07, 0, 3, 0, 4.52987e-07, 0, -3, -6, 1.5, 0)
