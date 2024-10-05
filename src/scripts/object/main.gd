@@ -12,7 +12,7 @@ func _on_player_custom_position_reseted():
 	$Level/StartSign.scale = Vector3.ZERO
 	reset_obstacles()
 func reset_obstacles():
-	var picked_obstacle = randomNumberGenerator.randi_range(0, NUM_OF_OBSTACLES - 1)
+	var picked_obstacle = 2#randomNumberGenerator.randi_range(0, NUM_OF_OBSTACLES - 1)
 	if picked_obstacle == 0:
 		$Randomizer/Przystanek.position.x = other.random_range(OBSTALES_RANGE)
 	elif picked_obstacle == 1:

@@ -129,8 +129,6 @@ func _load_win_menu():
 func _update_debug_label():
 	var fps = Engine.get_frames_per_second()
 	debugLabel.text = "FPS: %d | X: %d Z: %d | Resets: %d" % [fps, position.x, position.z, points]
-func _on_birds_custom_player_run_over_birds():
-	$Control/Bird.visible = true
 func _handle_mouse_look(mouse_delta: Vector2):
 	if Engine.time_scale == 0:
 		return
