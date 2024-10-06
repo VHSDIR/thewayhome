@@ -196,6 +196,10 @@ shape = SubResource("BoxShape3D_ic64v")
 
 [node name="Player" parent="Player" instance=ExtResource("9_7kv2t")]
 
+[connection signal="custom_player_buss_taken_enemy" from="Randomizer/Przystanek" to="." method="_on_przystanek_custom_player_buss_taken_enemy"]
+[connection signal="custom_player_buss_taken_passanger" from="Randomizer/Przystanek" to="." method="_on_przystanek_custom_player_buss_taken_passanger"]
+[connection signal="custom_player_did_not_take_passanger" from="Randomizer/Przystanek" to="." method="_on_przystanek_custom_player_did_not_take_passanger"]
+[connection signal="custom_player_rollover_passanger" from="Randomizer/Przystanek" to="." method="_on_przystanek_custom_player_rollover_passanger"]
 [connection signal="custom_player_run_over_birds" from="Randomizer/ObstacleBirds/Birds" to="." method="_on_birds_custom_player_run_over_birds"]
 [connection signal="body_entered" from="Randomizer/ObstacleBirds/Birds/CloserArea3D" to="Randomizer/ObstacleBirds/Birds" method="_on_closer_area_3d_body_entered"]
 [connection signal="body_entered" from="Randomizer/ObstacleBirds/Birds/FarArea3D" to="Randomizer/ObstacleBirds/Birds" method="_on_far_area_3d_body_entered"]

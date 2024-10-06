@@ -12,14 +12,14 @@ func _on_player_custom_position_reseted():
 	$Level/StartSign.scale = Vector3.ZERO
 	reset_obstacles()
 func reset_obstacles():
-	var picked_obstacle = 2#randomNumberGenerator.randi_range(0, NUM_OF_OBSTACLES - 1)
+	var picked_obstacle = 2 # randomNumberGenerator.randi_range(0, NUM_OF_OBSTACLES - 1)
 	if picked_obstacle == 0:
-		$Randomizer/Przystanek.position.x = other.random_range(OBSTALES_RANGE)
+		$Randomizer/Sarna.position.x = other.random_range(OBSTALES_RANGE)
 	elif picked_obstacle == 1:
 		$Randomizer/ObstaclesHolder/Obstacle01.position.x = other.random_range(OBSTALES_RANGE)
 		$Randomizer/ObstaclesHolder/Obstacle02.position.x = other.random_range(OBSTALES_RANGE)
 	elif picked_obstacle == 2:
-		$Randomizer/Sarna.position.x = other.random_range(OBSTALES_RANGE)
+		$Randomizer/Przystanek.reinitialize();
 	elif picked_obstacle == 3:
 		$Randomizer/ObstacleBirds/Birds.resetAfterLevelReset()
 	for i in range(NUM_OF_OBSTACLES):
@@ -36,3 +36,14 @@ func _on_birds_custom_player_run_over_birds():
 	get_tree().change_scene_to_file("res://scenes/menu/bird_menu.tscn")
 func _on_player_custom_player_stop():
 	$Randomizer/Przystanek.notify_that_bus_has_stoped();
+func _on_przystanek_custom_player_rollover_passanger():
+	print("game over, gracz przejechał pasażera")
+
+func _on_przystanek_custom_player_buss_taken_enemy():
+	print("game over, wziął wampira")
+
+func _on_przystanek_custom_player_buss_taken_passanger():
+	print("jest git, wziął pasażera")
+
+func _on_przystanek_custom_player_did_not_take_passanger():
+	print("game over, nie wziął pazażera")

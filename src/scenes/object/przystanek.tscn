@@ -1,15 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://1n2vqepjvvrm"]
+[gd_scene load_steps=10 format=3 uid="uid://1n2vqepjvvrm"]
 
 [ext_resource type="Material" uid="uid://dy00hb6d160wm" path="res://assets/busstop/busstop.tres" id="1_6ohwb"]
+[ext_resource type="Script" path="res://scripts/object/przystanek.gd" id="1_bxht0"]
 [ext_resource type="Material" uid="uid://cxnk8bgm78ulg" path="res://assets/busstop/passanger-man.tres" id="2_0cf0a"]
 [ext_resource type="Material" uid="uid://bbmktk66whbp0" path="res://assets/busstop/passanger-wampire.tres" id="3_87wc6"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_sbpwy"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_w714l"]
+size = Vector3(8, 4, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xhw8o"]
+size = Vector3(5, 3, 5)
+
 [sub_resource type="QuadMesh" id="QuadMesh_32riv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yfr2q"]
+size = Vector3(77, 5, 5)
 
 [node name="Przystanek" type="Node3D"]
 transform = Transform3D(-0.8, 0, -1.20797e-07, 0, 0.8, 0, 1.20797e-07, 0, -0.8, 0, 0, 0)
+script = ExtResource("1_bxht0")
 
 [node name="busstop" type="MeshInstance3D" parent="."]
 transform = Transform3D(-3, 0, -4.52987e-07, 0, 3, 0, 4.52987e-07, 0, -3, -6, 1.5, 0)
@@ -17,17 +28,46 @@ material_override = ExtResource("1_6ohwb")
 mesh = SubResource("QuadMesh_sbpwy")
 skeleton = NodePath("../..")
 
-[node name="passangers-holder" type="Node3D" parent="."]
+[node name="StopArea3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StopArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1)
+shape = SubResource("BoxShape3D_w714l")
+
+[node name="PassangerArea3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.28565, 0, -7.98113e-07)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PassangerArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_xhw8o")
+
+[node name="passangersHolder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 0)
 
-[node name="passanger-man" type="MeshInstance3D" parent="passangers-holder"]
-transform = Transform3D(-0.915, 0, -1.74846e-07, 0, 1.8, 0, 7.99918e-08, 0, -2, 0, 0.9, 0)
+[node name="passanger-man" type="Node3D" parent="passangersHolder"]
+
+[node name="sprite" type="MeshInstance3D" parent="passangersHolder/passanger-man"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1.8, 0, 8.74228e-08, 0, -1, 0, 0.9, 0)
 material_override = ExtResource("2_0cf0a")
 mesh = SubResource("QuadMesh_32riv")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="passanger-wampire" type="MeshInstance3D" parent="passangers-holder"]
-transform = Transform3D(-0.915, 0, -1.74846e-07, 0, 1.8, 0, 7.99918e-08, 0, -2, -0.00374183, 0.9, -5.65002e-10)
+[node name="passanger-wampire" type="Node3D" parent="passangersHolder"]
+
+[node name="sprite" type="MeshInstance3D" parent="passangersHolder/passanger-wampire"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1.8, 0, 8.74228e-08, 0, -1, 0, 0.9, 0)
 material_override = ExtResource("3_87wc6")
 mesh = SubResource("QuadMesh_32riv")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
+
+[node name="NotPassArea3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NotPassArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape3D_yfr2q")
+
+[connection signal="body_entered" from="StopArea3D" to="." method="_on_stop_area_3d_body_entered"]
+[connection signal="body_exited" from="StopArea3D" to="." method="_on_stop_area_3d_body_exited"]
+[connection signal="body_entered" from="PassangerArea3D" to="." method="_on_passanger_area_3d_body_entered"]
+[connection signal="body_exited" from="NotPassArea3D" to="." method="_on_not_pass_area_3d_body_exited"]

@@ -115,7 +115,7 @@ func _physics_process(delta):
 	refCameraShaker.set_shake_factor(shake_factor * currentSpeedFactor)
 	move_and_slide()
 	global_position.y = 0
-	if newSpeed == 0 && CURRENT_SPEED > 0:
+	if newSpeed == 0 && CURRENT_SPEED != 0:
 		custom_player_stop.emit()
 	CURRENT_SPEED = newSpeed
 func _increase_points():
