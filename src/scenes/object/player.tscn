@@ -35,10 +35,12 @@ shape = SubResource("BoxShape3D_kfv1j")
 
 [node name="MeshPodwozie" type="MeshInstance3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 2, 0, 0, 0, 10, 0, 0.5, -4)
+visible = false
 mesh = SubResource("BoxMesh_6o8o6")
 
 [node name="MeshDach" type="MeshInstance3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 3, -4)
+visible = false
 mesh = SubResource("BoxMesh_6o8o6")
 
 [node name="HornPlayer" type="AudioStreamPlayer" parent="."]
@@ -52,9 +54,6 @@ offset_left = 303.0
 offset_top = 199.0
 offset_right = 609.0
 offset_bottom = 314.0
-
-[node name="PauseMenu" parent="Control" instance=ExtResource("2_mriif")]
-layout_mode = 1
 
 [node name="SpeedMeter" type="Label" parent="Control"]
 layout_mode = 1
@@ -75,3 +74,10 @@ offset_right = -211.0
 offset_bottom = -168.0
 theme_override_font_sizes/font_size = 30
 text = "Debug"
+
+[node name="PauseMenu" parent="Control" instance=ExtResource("2_mriif")]
+layout_mode = 1
+offset_left = 510.0
+offset_top = 254.0
+offset_right = 510.0
+offset_bottom = 254.0

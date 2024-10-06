@@ -19,15 +19,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -136.5
+offset_left = -170.5
 offset_top = -50.5
-offset_right = 136.5
+offset_right = 170.5
 offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -38,9 +40,9 @@ You  won!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Reset" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_w4847")
-text = "Reset Game"
+text = "Back"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

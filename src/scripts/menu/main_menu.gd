@@ -9,3 +9,5 @@ func _ready() -> void:
 	audio.play_music_level()
 	Engine.time_scale = 1
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+func _on_credits_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/menu/credits_menu.tscn")
