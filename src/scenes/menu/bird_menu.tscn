@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bq2x7hfdw8xok"]
 
 [ext_resource type="Script" path="res://scripts/menu/bird_menu.gd" id="1_40cls"]
-[ext_resource type="Theme" uid="uid://dhi8sj1f6nnbs" path="res://assets/resource/theme.tres" id="2_rgktd"]
+[ext_resource type="Theme" uid="uid://dhi8sj1f6nnbs" path="res://resources/theme.tres" id="2_rgktd"]
 
 [node name="BirdMenu" type="Control"]
 layout_mode = 3
@@ -35,8 +35,7 @@ size_flags_vertical = 4
 layout_mode = 2
 theme = ExtResource("2_rgktd")
 theme_override_font_sizes/font_size = 30
-text = "You  ran  over  a  bird
-You  lose!"
+text = "You  ran  over  a  bird!"
 horizontal_alignment = 1
 vertical_alignment = 1
 

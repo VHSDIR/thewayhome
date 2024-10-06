@@ -14,13 +14,11 @@ static func pick_random_value(values: Array) -> Variant:
 	if values.size() == 0:
 		return null
 	var random_index = randi() % values.size()
-
 	return values[random_index]
 static func get_child_names_from_node(node: Node) -> Array:
 	var names = []
 	for child in node.get_children():
 		names.append(child.name)
-
 	return names
 static func calculate_speed(
 	currentSpeed: float,
@@ -42,5 +40,4 @@ static func calculate_speed(
 			speed = clamp(currentSpeed - deccelerationFactor * deltaTime, 0, currentSpeed)
 		elif currentSpeed < 0:
 			speed = clamp(currentSpeed + deccelerationFactor * deltaTime, 0, currentSpeed);
-
 	return clamp(speed, maxReverseSpeed, maxSpeed)

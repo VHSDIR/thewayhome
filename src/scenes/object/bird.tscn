@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkwg68qxp7w3b"]
 
-[ext_resource type="Material" uid="uid://n8qgpcsndegq" path="res://assets/bird/bird-standing-material.tres" id="1_1i6tc"]
-[ext_resource type="Material" uid="uid://kd3w5vwipl63" path="res://assets/bird/bird-flaying-material.tres" id="2_1bbo4"]
+[ext_resource type="Material" uid="uid://n8qgpcsndegq" path="res://images/bird-standing-material.tres" id="1_1i6tc"]
+[ext_resource type="Material" uid="uid://kd3w5vwipl63" path="res://images/bird-flaying-material.tres" id="2_1bbo4"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_thcjb"]
 

@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bojh8008x327y"]
 
-[ext_resource type="Texture2D" uid="uid://r5jx48b6csbm" path="res://assets/image/start-sign.png" id="1_1cmgj"]
+[ext_resource type="Texture2D" uid="uid://r5jx48b6csbm" path="res://images/start-sign.png" id="1_1cmgj"]
 
 [resource]
 transparency = 1

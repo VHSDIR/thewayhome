@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ct87ygyxqj76s"
-path.s3tc="res://.godot/imported/bird-standing.png-e016033def56e9add8c95ebc18424a57.s3tc.ctex"
+uid="uid://bhjn740hvd1r7"
+path.s3tc="res://.godot/imported/busstop.png-2c7100999d74cac928121c7cdb29c73b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/bird/bird-standing.png"
-dest_files=["res://.godot/imported/bird-standing.png-e016033def56e9add8c95ebc18424a57.s3tc.ctex"]
+source_file="res://images/busstop.png"
+dest_files=["res://.godot/imported/busstop.png-2c7100999d74cac928121c7cdb29c73b.s3tc.ctex"]
 
 [params]
 

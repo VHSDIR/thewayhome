@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cir4nlqcrcul7"
-path.s3tc="res://.godot/imported/passanger-man.png-ef40794401b517cb625f389a40086efa.s3tc.ctex"
+uid="uid://p0curq4pyfdn"
+path.s3tc="res://.godot/imported/bird-flaying.png-b8f0a46ee4fd4da1b4a026300e98c879.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/busstop/passanger-man.png"
-dest_files=["res://.godot/imported/passanger-man.png-ef40794401b517cb625f389a40086efa.s3tc.ctex"]
+source_file="res://images/bird-flaying.png"
+dest_files=["res://.godot/imported/bird-flaying.png-b8f0a46ee4fd4da1b4a026300e98c879.s3tc.ctex"]
 
 [params]
 

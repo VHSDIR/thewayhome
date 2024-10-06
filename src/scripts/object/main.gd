@@ -38,12 +38,9 @@ func _on_player_custom_player_stop():
 	$Randomizer/Przystanek.notify_that_bus_has_stoped();
 func _on_przystanek_custom_player_rollover_passanger():
 	print("game over, gracz przejechał pasażera")
-
 func _on_przystanek_custom_player_buss_taken_enemy():
 	print("game over, wziął wampira")
-
 func _on_przystanek_custom_player_buss_taken_passanger():
 	print("jest git, wziął pasażera")
-
 func _on_przystanek_custom_player_did_not_take_passanger():
 	print("game over, nie wziął pazażera")

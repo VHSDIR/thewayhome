@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p0curq4pyfdn"
-path.s3tc="res://.godot/imported/bird-flaying.png-d9dd62acd415310239ae1618c5501682.s3tc.ctex"
+uid="uid://ceraerrjmmuhk"
+path.s3tc="res://.godot/imported/sarna.jpg-678f3c754bbaec225e3721d8ab8e1b2c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/bird/bird-flaying.png"
-dest_files=["res://.godot/imported/bird-flaying.png-d9dd62acd415310239ae1618c5501682.s3tc.ctex"]
+source_file="res://images/sarna.jpg"
+dest_files=["res://.godot/imported/sarna.jpg-678f3c754bbaec225e3721d8ab8e1b2c.s3tc.ctex"]
 
 [params]
 

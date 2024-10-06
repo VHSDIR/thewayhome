@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://1n2vqepjvvrm"]
 
-[ext_resource type="Material" uid="uid://dy00hb6d160wm" path="res://assets/busstop/busstop.tres" id="1_6ohwb"]
+[ext_resource type="Material" uid="uid://dy00hb6d160wm" path="res://images/busstop.tres" id="1_6ohwb"]
 [ext_resource type="Script" path="res://scripts/object/przystanek.gd" id="1_bxht0"]
-[ext_resource type="Material" uid="uid://cxnk8bgm78ulg" path="res://assets/busstop/passanger-man.tres" id="2_0cf0a"]
-[ext_resource type="Material" uid="uid://bbmktk66whbp0" path="res://assets/busstop/passanger-wampire.tres" id="3_87wc6"]
+[ext_resource type="Material" uid="uid://cxnk8bgm78ulg" path="res://images/passanger-man.tres" id="2_0cf0a"]
+[ext_resource type="Material" uid="uid://bbmktk66whbp0" path="res://images/passanger-wampire.tres" id="3_87wc6"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_sbpwy"]
 
