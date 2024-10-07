@@ -1,13 +1,13 @@
 [gd_resource type="Theme" load_steps=8 format=3 uid="uid://dhi8sj1f6nnbs"]
 
-[ext_resource type="FontFile" uid="uid://bddac44d5pkxr" path="res://resources/ARCADECLASSIC.TTF" id="1_bv1rl"]
+[ext_resource type="FontFile" uid="uid://bddac44d5pkxr" path="res://resources/font.TTF" id="1_bv1rl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tfgw7"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.3)
+bg_color = Color(0, 0, 0, 0.6)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -19,8 +19,7 @@ content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0.75)
-draw_center = false
+bg_color = Color(0, 0, 0, 0.6)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -40,7 +39,7 @@ content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.225, 0.225, 0.225, 0.6)
+bg_color = Color(0, 0, 0, 0.6)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -52,7 +51,7 @@ content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
+bg_color = Color(0, 0, 0, 0.6)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3

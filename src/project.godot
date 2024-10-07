@@ -20,10 +20,14 @@ run/max_fps=360
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 
+[audio]
+
+buses/default_bus_layout="res://resources/default_bus_layout.tres"
+
 [autoload]
 
 transition_screen="*res://scenes/object/transition_screen.tscn"
-audio="*res://scenes/object/audio_stream_player.tscn"
+audio="*res://scenes/object/music.tscn"
 
 [display]
 
@@ -36,7 +40,7 @@ import/blender/enabled=false
 [gui]
 
 theme/custom="res://resources/theme.tres"
-theme/custom_font="res://resources/ARCADECLASSIC.TTF"
+theme/custom_font="res://resources/font.TTF"
 
 [input]
 
