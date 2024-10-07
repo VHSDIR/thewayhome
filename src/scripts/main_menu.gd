@@ -5,11 +5,11 @@ func _ready() -> void:
 func _on_play_pressed() -> void:
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished
-	get_tree().change_scene_to_file("res://scenes/object/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
 func _on_settings_pressed() -> void:
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished
-	get_tree().change_scene_to_file("res://scenes/menu/settings_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/settings_menu.tscn")
 func _on_exit_pressed() -> void:
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished
@@ -18,4 +18,4 @@ func _on_exit_pressed() -> void:
 func _on_credits_pressed() -> void:
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished
-	get_tree().change_scene_to_file("res://scenes/menu/credits_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/credits_menu.tscn")

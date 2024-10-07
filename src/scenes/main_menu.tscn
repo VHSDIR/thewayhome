@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://clsftf0b26r7h"]
 
-[ext_resource type="Script" path="res://scripts/menu/main_menu.gd" id="1_c1xbh"]
-[ext_resource type="Theme" uid="uid://dhi8sj1f6nnbs" path="res://resources/theme.tres" id="2_xnkl2"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_sh6nr"]
+[ext_resource type="Theme" uid="uid://dhi8sj1f6nnbs" path="res://resources/theme.tres" id="2_ouojh"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_c1xbh")
+script = ExtResource("1_sh6nr")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -33,7 +33,7 @@ size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_xnkl2")
+theme = ExtResource("2_ouojh")
 theme_override_font_sizes/font_size = 30
 text = "The  Way Home"
 horizontal_alignment = 1
@@ -41,22 +41,22 @@ vertical_alignment = 1
 
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_xnkl2")
+theme = ExtResource("2_ouojh")
 text = "Play"
 
 [node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_xnkl2")
+theme = ExtResource("2_ouojh")
 text = "Settings"
 
 [node name="Credits" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_xnkl2")
+theme = ExtResource("2_ouojh")
 text = "Credits"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_xnkl2")
+theme = ExtResource("2_ouojh")
 text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]

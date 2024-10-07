@@ -1,5 +1,5 @@
 extends CharacterBody3D
-var other = preload("res://scripts/object/other.gd")
+var other = preload("res://scripts/other.gd")
 var CURRENT_SPEED = 0
 const MAX_SPEED = 10.0
 const REVERSE_SPEED = -5.0
@@ -121,11 +121,11 @@ func _physics_process(delta):
 func _increase_points():
 	points += 1
 	_update_debug_label()
-	if points >= 3:
+	if points >= 5:
 		_load_win_menu()
 func _load_win_menu():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	get_tree().change_scene_to_file("res://scenes/menu/win_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/win_menu.tscn")
 func _update_debug_label():
 	var fps = Engine.get_frames_per_second()
 	debugLabel.text = "FPS: %d | X: %d Z: %d | Resets: %d" % [fps, position.x, position.z, points]

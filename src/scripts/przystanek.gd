@@ -1,5 +1,5 @@
 extends Node3D
-var other = preload("res://scripts/object/other.gd")
+var other = preload("res://scripts/other.gd")
 signal custom_player_rollover_passanger
 signal custom_player_buss_taken_passanger;
 signal custom_player_buss_taken_enemy;

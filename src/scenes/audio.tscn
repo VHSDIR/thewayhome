@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl551vk0ke78j"]
+
+[ext_resource type="Script" path="res://scripts/audio.gd" id="1_qo11q"]
+
+[node name="Audio" type="TabBar"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_qo11q")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

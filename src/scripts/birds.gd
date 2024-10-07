@@ -1,5 +1,5 @@
 extends Node
-var other = preload("res://scripts/object/other.gd")
+var other = preload("res://scripts/other.gd")
 signal custom_player_run_over_birds;
 @export var birds: Array[Node3D] = []
 var areBirdsOnScaredAway = false;
