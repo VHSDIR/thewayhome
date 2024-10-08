@@ -1,13 +1,77 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl551vk0ke78j"]
+[gd_scene load_steps=3 format=3 uid="uid://cl551vk0ke78j"]
 
 [ext_resource type="Script" path="res://scripts/audio.gd" id="1_qo11q"]
+[ext_resource type="Theme" uid="uid://dhi8sj1f6nnbs" path="res://resources/theme.tres" id="2_55qgp"]
 
 [node name="Audio" type="TabBar"]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_qo11q")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -27.0
+offset_right = 87.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Master" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/Master"]
+layout_mode = 2
+text = "Master  Audio:"
+
+[node name="Master_Off" type="Button" parent="VBoxContainer/Master"]
+layout_mode = 2
+theme = ExtResource("2_55qgp")
+text = "Off"
+
+[node name="Master_On" type="Button" parent="VBoxContainer/Master"]
+layout_mode = 2
+theme = ExtResource("2_55qgp")
+text = "On"
+
+[node name="Music" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/Music"]
+layout_mode = 2
+text = "SFX  Audio:"
+
+[node name="SFX_Off" type="Button" parent="VBoxContainer/Music"]
+layout_mode = 2
+theme = ExtResource("2_55qgp")
+text = "Off"
+
+[node name="SFX_On" type="Button" parent="VBoxContainer/Music"]
+layout_mode = 2
+theme = ExtResource("2_55qgp")
+text = "On"
+
+[connection signal="pressed" from="VBoxContainer/Master/Master_Off" to="." method="_on_master_off_pressed"]
+[connection signal="pressed" from="VBoxContainer/Master/Master_On" to="." method="_on_master_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/Music/SFX_Off" to="." method="_on_sfx_off_pressed"]
+[connection signal="pressed" from="VBoxContainer/Music/SFX_On" to="." method="_on_sfx_on_pressed"]
