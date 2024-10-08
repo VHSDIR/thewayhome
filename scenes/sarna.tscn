@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbkg7ulps68cf"]
+
+[ext_resource type="Texture2D" uid="uid://ceraerrjmmuhk" path="res://images/sarna.jpg" id="1_ly7q4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbp72"]
+albedo_texture = ExtResource("1_ly7q4")
+
+[sub_resource type="QuadMesh" id="QuadMesh_sbpwy"]
+
+[node name="Sarna" type="Node3D"]
+transform = Transform3D(-0.8, 0, -1.20797e-07, 0, 0.8, 0, 1.20797e-07, 0, -0.8, 0, 0, 0)
+
+[node name="Sprite" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, 0)
+material_override = SubResource("StandardMaterial3D_xbp72")
+mesh = SubResource("QuadMesh_sbpwy")
+skeleton = NodePath("../..")
