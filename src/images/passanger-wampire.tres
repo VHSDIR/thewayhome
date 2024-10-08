@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bbmktk66whbp0"]
-
-[ext_resource type="Texture2D" uid="uid://c2edraivgtwtt" path="res://images/passanger-wampire.png" id="1_d4rl7"]
-
-[resource]
-transparency = 1
-albedo_texture = ExtResource("1_d4rl7")
