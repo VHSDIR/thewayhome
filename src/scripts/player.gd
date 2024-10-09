@@ -15,6 +15,7 @@ const SIDEROAD_MAX_X = 4
 var PREVIOUS_POSITION: Vector3
 var points = 0
 var is_teleporting = false
+var gasolineLiters = 100
 signal custom_position_reseted
 signal custom_player_horn
 signal custom_player_stop
@@ -98,6 +99,18 @@ func _physics_process(delta):
 		var speed = distance / delta
 		$Control/SpeedMeter.text = other.float_to_speed(speed)
 		$Control/SpeedMeter.modulate = other.get_speed_color(newSpeed, MAX_SPEED)
+
+	var ret = other.calculate_gas_consumtion(
+		gasolineLiters,       # totalFuel
+		newSpeed,             # currentSpeed,
+		MAX_SPEED,            # maxSpeed
+		isAcceleratePressed,  # isAccelerating
+		delta,                # timeDelta
+	)
+	gasolineLiters = ret[0];
+
+	$Control/GasolineInfo.text = other.float_to_speed(gasolineLiters) + "L" + "; " + other.float_to_two_decimal_places(ret[1]) + "L/km"
+
 	is_teleporting = false
 	PREVIOUS_POSITION = position
 	_update_debug_label()
@@ -129,6 +142,8 @@ func _load_win_menu():
 func _update_debug_label():
 	var fps = Engine.get_frames_per_second()
 	debugLabel.text = "FPS: %d | X: %d Z: %d | Resets: %d" % [fps, position.x, position.z, points]
+func add_player_gasoline(liters: float):
+	gasolineLiters += gasolineLiters
 func _handle_mouse_look(mouse_delta: Vector2):
 	if Engine.time_scale == 0:
 		return

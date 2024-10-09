@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d2754k6brsb7x" path="res://scenes/terrain.tscn" id="2_vt63v"]
 [ext_resource type="PackedScene" uid="uid://b83dcv6fewvk8" path="res://scenes/start_sign.tscn" id="3_fhli1"]
 [ext_resource type="PackedScene" uid="uid://bbkg7ulps68cf" path="res://scenes/sarna.tscn" id="4_wooq6"]
-[ext_resource type="PackedScene" uid="uid://d26te0gv7khjd" path="res://scenes/block.tscn" id="5_ebb2d"]
+[ext_resource type="PackedScene" uid="uid://dkcsmr6lk4a6j" path="res://scenes/canister.tscn" id="5_48t2g"]
 [ext_resource type="PackedScene" uid="uid://1n2vqepjvvrm" path="res://scenes/przystanek.tscn" id="6_skth3"]
 [ext_resource type="Script" path="res://scripts/birds.gd" id="7_r8uu6"]
 [ext_resource type="PackedScene" uid="uid://bkwg68qxp7w3b" path="res://scenes/bird.tscn" id="8_djq2t"]
@@ -138,13 +138,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 [node name="Sarna" parent="Randomizer" instance=ExtResource("4_wooq6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 10)
 
-[node name="ObstaclesHolder" type="Node3D" parent="Randomizer"]
-
-[node name="Obstacle01" parent="Randomizer/ObstaclesHolder" instance=ExtResource("5_ebb2d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
-
-[node name="Obstacle02" parent="Randomizer/ObstaclesHolder" instance=ExtResource("5_ebb2d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+[node name="Canister" parent="Randomizer" instance=ExtResource("5_48t2g")]
 
 [node name="Przystanek" parent="Randomizer" instance=ExtResource("6_skth3")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 9.84)

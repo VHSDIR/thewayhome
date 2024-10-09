@@ -34,7 +34,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -4)
 shape = SubResource("BoxShape3D_kfv1j")
 
 [node name="MeshPodwozie" type="MeshInstance3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 2, 0, 0, 0, 10, 0, 0.5, -4)
+transform = Transform3D(3, 0, 0, 0, 1.5, 0, 0, 0, 10, 0, 0.75, -4)
 mesh = SubResource("BoxMesh_6o8o6")
 
 [node name="MeshDach" type="MeshInstance3D" parent="."]
@@ -80,3 +80,12 @@ offset_left = 510.0
 offset_top = 254.0
 offset_right = 510.0
 offset_bottom = 254.0
+
+[node name="GasolineInfo" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -229.0
+offset_top = 90.0
+offset_right = -167.0
+offset_bottom = 107.0
+text = "Gasolie
+"

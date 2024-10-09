@@ -2,6 +2,8 @@ extends Node
 static var randomNumberGenerator = RandomNumberGenerator.new()
 static func float_to_speed(value: float) -> String:
 	return "%0.1f" % value
+static func float_to_two_decimal_places(value: float) -> String:
+	return "%0.2f" % value
 static func get_speed_color(speed: float, MAX_SPEED: float) -> Color:
 	var t = speed / MAX_SPEED
 	return Color(1, 1 - t, 1 - t)
@@ -41,3 +43,14 @@ static func calculate_speed(
 		elif currentSpeed < 0:
 			speed = clamp(currentSpeed + deccelerationFactor * deltaTime, 0, currentSpeed);
 	return clamp(speed, maxReverseSpeed, maxSpeed)
+static func get_random_sign() -> int:
+	if randi() % 2 == 0:
+		return 1
+	return -1
+static func calculate_gas_consumtion(totalFuel: float, currentSpeed: float, maxSpeed: float, isAccelerating: bool, timeDelta: float) -> Array:
+	var currentSpeedFactor = currentSpeed / maxSpeed
+	var fuel_decrease = timeDelta * currentSpeedFactor if isAccelerating else 0;
+	var fuel_after_decrease = totalFuel - fuel_decrease
+	var fuel_consumption = fuel_decrease * currentSpeed
+
+	return [fuel_after_decrease, fuel_consumption]

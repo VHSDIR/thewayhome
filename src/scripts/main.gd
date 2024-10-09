@@ -12,12 +12,11 @@ func _on_player_custom_position_reseted():
 	$Level/StartSign.scale = Vector3.ZERO
 	reset_obstacles()
 func reset_obstacles():
-	var picked_obstacle = randomNumberGenerator.randi_range(0, NUM_OF_OBSTACLES - 1)
+	var picked_obstacle = 1 # randomNumberGenerator.randi_range(0, NUM_OF_OBSTACLES - 1)
 	if picked_obstacle == 0:
 		$Randomizer/Sarna.position.x = other.random_range(OBSTALES_RANGE)
 	elif picked_obstacle == 1:
-		$Randomizer/ObstaclesHolder/Obstacle01.position.x = other.random_range(OBSTALES_RANGE)
-		$Randomizer/ObstaclesHolder/Obstacle02.position.x = other.random_range(OBSTALES_RANGE)
+		$Randomizer/Canister.position.x = other.get_random_sign() * OBSTALES_RANGE
 	elif picked_obstacle == 2:
 		$Randomizer/Przystanek.reinitialize();
 	elif picked_obstacle == 3:
