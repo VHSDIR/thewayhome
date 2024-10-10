@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cm6tq"]
 [ext_resource type="PackedScene" uid="uid://dvblc8w4k7bli" path="res://scenes/pause_menu.tscn" id="2_mriif"]
 [ext_resource type="Script" path="res://scripts/camera_shake.gd" id="2_ue7l3"]
-[ext_resource type="AudioStream" uid="uid://bqsyvtn2ojxay" path="res://music/horn.mp3" id="5_8kamj"]
+[ext_resource type="AudioStream" uid="uid://bqsyvtn2ojxay" path="res://resources/horn.mp3" id="5_8kamj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kfv1j"]
 size = Vector3(3, 3, 10)
@@ -80,12 +80,3 @@ offset_left = 510.0
 offset_top = 254.0
 offset_right = 510.0
 offset_bottom = 254.0
-
-[node name="GasolineInfo" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = -229.0
-offset_top = 90.0
-offset_right = -167.0
-offset_bottom = 107.0
-text = "Gasolie
-"

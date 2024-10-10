@@ -73,7 +73,7 @@ func _physics_process(delta):
 		delta,
 		MAX_SPEED,
 		REVERSE_SPEED
-	);
+	)
 	var input_dir = Input.get_vector("rotate_left", "rotate_right", "move_back", "move_front")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, 1)).normalized()
 	if direction:
@@ -99,21 +99,19 @@ func _physics_process(delta):
 		var speed = distance / delta
 		$Control/SpeedMeter.text = other.float_to_speed(speed)
 		$Control/SpeedMeter.modulate = other.get_speed_color(newSpeed, MAX_SPEED)
-
 	var ret = other.calculate_gas_consumtion(
-		gasolineLiters,       # totalFuel
-		newSpeed,             # currentSpeed,
-		MAX_SPEED,            # maxSpeed
-		isAcceleratePressed,  # isAccelerating
-		delta,                # timeDelta
+		gasolineLiters,
+		newSpeed,
+		MAX_SPEED,
+		isAcceleratePressed,
+		delta
 	)
-	gasolineLiters = ret[0];
-
-	$Control/GasolineInfo.text = other.float_to_speed(gasolineLiters) + "L" + "; " + other.float_to_two_decimal_places(ret[1]) + "L/km"
-
+	gasolineLiters = ret[0]
 	is_teleporting = false
 	PREVIOUS_POSITION = position
 	_update_debug_label()
+	if gasolineLiters <= 0:
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	if position.z > LOOPING_DISTANCE:
 		position.z = -LOOPING_DISTANCE
 		custom_position_reseted.emit()
@@ -123,12 +121,12 @@ func _physics_process(delta):
 	var shake_factor = other.cast_value_range_to_factor(
 		abs(position.x),
 		SIDEROAD_START_X,
-		SIDEROAD_MAX_X,
+		SIDEROAD_MAX_X
 	)
 	refCameraShaker.set_shake_factor(shake_factor * currentSpeedFactor)
 	move_and_slide()
 	global_position.y = 0
-	if newSpeed == 0 && CURRENT_SPEED != 0:
+	if newSpeed == 0 and CURRENT_SPEED != 0:
 		custom_player_stop.emit()
 	CURRENT_SPEED = newSpeed
 func _increase_points():
@@ -141,8 +139,9 @@ func _load_win_menu():
 	get_tree().change_scene_to_file("res://scenes/win_menu.tscn")
 func _update_debug_label():
 	var fps = Engine.get_frames_per_second()
-	debugLabel.text = "FPS: %d | X: %d Z: %d | Resets: %d" % [fps, position.x, position.z, points]
-func add_player_gasoline(liters: float):
+	var fuel_info = "Fuel: %.2fL" % gasolineLiters
+	debugLabel.text = "FPS: %d | X: %d Z: %d | Resets: %d | %s" % [fps, position.x, position.z, points, fuel_info]
+func add_player_gasoline(_liters: float):
 	gasolineLiters += gasolineLiters
 func _handle_mouse_look(mouse_delta: Vector2):
 	if Engine.time_scale == 0:

@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://8s5guqencso6"]
 
-[ext_resource type="Script" path="res://scripts/graphics.gd" id="1_ynhv0"]
+[ext_resource type="Script" path="res://scripts/video.gd" id="1_ynhv0"]
 [ext_resource type="Theme" uid="uid://dhi8sj1f6nnbs" path="res://resources/theme.tres" id="2_6ymkf"]
 
-[node name="Graphics" type="TabBar"]
+[node name="Video" type="TabBar"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

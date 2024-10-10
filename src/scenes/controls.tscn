@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://bonwvhl8xegsm"]
 
-[ext_resource type="Script" path="res://scripts/general.gd" id="1_4dwns"]
+[ext_resource type="Script" path="res://scripts/controls.gd" id="1_4dwns"]
 
-[node name="General" type="TabBar"]
+[node name="Controls" type="TabBar"]
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_4dwns")

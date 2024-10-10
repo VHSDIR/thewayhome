@@ -1,5 +1,5 @@
 extends AudioStreamPlayer
-const level_music = preload("res://music/desert.mp3")
+const level_music = preload("res://resources/desert.mp3")
 func _play_music(music: AudioStream, volume = 0.0):
 	if stream == music:
 		return

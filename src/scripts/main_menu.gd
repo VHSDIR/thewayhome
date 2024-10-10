@@ -1,6 +1,6 @@
 extends Control
 func _ready() -> void:
-	audio.play_music_level()
+	Music.play_music_level()
 	Engine.time_scale = 1
 func _on_play_pressed() -> void:
 	TransitionScreen.transition()
@@ -18,4 +18,4 @@ func _on_exit_pressed() -> void:
 func _on_credits_pressed() -> void:
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished
-	get_tree().change_scene_to_file("res://scenes/credits_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/help_menu.tscn")

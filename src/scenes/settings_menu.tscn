@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dddktftjb2dnj"]
 
 [ext_resource type="Script" path="res://scripts/settings_menu.gd" id="1_2s4ui"]
-[ext_resource type="PackedScene" uid="uid://8s5guqencso6" path="res://scenes/graphics.tscn" id="2_dcy6j"]
-[ext_resource type="PackedScene" uid="uid://bonwvhl8xegsm" path="res://scenes/general.tscn" id="2_n7gb1"]
+[ext_resource type="PackedScene" uid="uid://8s5guqencso6" path="res://scenes/video.tscn" id="2_dcy6j"]
+[ext_resource type="PackedScene" uid="uid://bonwvhl8xegsm" path="res://scenes/controls.tscn" id="2_n7gb1"]
 [ext_resource type="PackedScene" uid="uid://cl551vk0ke78j" path="res://scenes/audio.tscn" id="4_x773f"]
 
 [node name="SettingsMenu" type="Control"]
@@ -25,11 +25,11 @@ grow_vertical = 2
 tab_alignment = 1
 current_tab = 0
 
-[node name="General" parent="TabContainer" instance=ExtResource("2_n7gb1")]
+[node name="Controls" parent="TabContainer" instance=ExtResource("2_n7gb1")]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Graphics" parent="TabContainer" instance=ExtResource("2_dcy6j")]
+[node name="Video" parent="TabContainer" instance=ExtResource("2_dcy6j")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1

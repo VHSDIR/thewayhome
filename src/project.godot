@@ -26,7 +26,7 @@ buses/default_bus_layout="res://resources/default_bus_layout.tres"
 
 [autoload]
 
-audio="*res://scenes/music.tscn"
+Music="*res://scenes/music.tscn"
 TransitionScreen="*res://scenes/transition_screen.tscn"
 
 [display]
