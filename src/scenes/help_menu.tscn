@@ -35,7 +35,7 @@ size_flags_vertical = 4
 layout_mode = 2
 theme = ExtResource("2_m6pg8")
 theme_override_font_sizes/font_size = 20
-text = "Credits  Text"
+text = "Text"
 horizontal_alignment = 1
 vertical_alignment = 1
 
