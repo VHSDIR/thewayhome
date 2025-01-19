@@ -25,23 +25,11 @@ signal custom_player_stop
 @onready var debugLabel = $Control/Debug
 func _ready():
 	$Control/SpeedMeter.visible = true
-	$Control/PauseMenu.visible = false
 	$Control/Debug.visible = true
 	_update_debug_label()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 func _on_continue_pressed():
 	restore_ui_elements()
-func toggle_pause_menu():
-	if $Control/PauseMenu.visible:
-		$Control/PauseMenu.visible = false
-		Engine.time_scale = 1
-		restore_ui_elements()
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	else:
-		$Control/PauseMenu.visible = true
-		Engine.time_scale = 0
-		hide_ui_elements()
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 func hide_ui_elements():
 	$Control/SpeedMeter.visible = false
 	debugLabel.visible = false
@@ -49,8 +37,8 @@ func restore_ui_elements():
 	$Control/SpeedMeter.visible = true
 	debugLabel.visible = true
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		toggle_pause_menu()
+	if Input.is_action_just_pressed("escape_key"):
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	if Input.is_action_just_pressed("horn_pressed"):
 		$HornPlayer.play()
 		custom_player_horn.emit()

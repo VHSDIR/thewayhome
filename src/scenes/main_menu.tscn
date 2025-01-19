@@ -44,16 +44,15 @@ layout_mode = 2
 theme = ExtResource("2_ouojh")
 text = "Play"
 
-[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="More Games" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_ouojh")
-text = "Settings"
+text = "More Games"
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_ouojh")
-text = "Quit"
+text = "Exit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/More Games" to="." method="_on_more_games_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
