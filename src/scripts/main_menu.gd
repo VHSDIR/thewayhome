@@ -8,7 +8,7 @@ func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 func _on_more_games_pressed() -> void:
-	pass
+	OS.shell_open("https://hejzzy.github.io")
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()
